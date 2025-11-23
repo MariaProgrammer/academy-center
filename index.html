@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Академический Центр</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__container">
+        <a href="/" class="header__logo">
+          <svg
+            width="39"
+            height="39"
+            viewBox="0 0 39 39"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.1641 21.997H21.6713L19.4076 15.6523L17.1641 21.997Z"
+              fill="white"
+            />
+            <path
+              d="M19.5 0C8.73046 0 0 8.73046 0 19.5C0 30.2695 8.73046 39 19.5 39C30.2695 39 39 30.2696 39 19.5C39 8.73038 30.2695 0 19.5 0ZM24.1766 29.7377L23.0483 26.4122H15.7908L14.6567 29.7377H8.61175L16.6548 9.26266H22.1688L30.3881 29.7377H24.1766Z"
+              fill="white"
+            />
+          </svg>
+          <span>Академический<br />центр</span>
+        </a>
+
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li><a href="#">Почему мы?</a></li>
+            <li><a href="#">Стоимость</a></li>
+            <li><a href="#">Гарантии</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <div class="header__controls">
+          <button class="header__city" data-modal-open="modal-city">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 8.66667C8.73638 8.66667 9.33333 8.06972 9.33333 7.33333C9.33333 6.59695 8.73638 6 8 6C7.26362 6 6.66667 6.59695 6.66667 7.33333C6.66667 8.06972 7.26362 8.66667 8 8.66667Z"
+                fill="white"
+              />
+              <path
+                d="M8 1.33333C5.05 1.33333 2.66667 3.71667 2.66667 6.66667C2.66667 10.1 8 14.6667 8 14.6667C8 14.6667 13.3333 10.1 13.3333 6.66667C13.3333 3.71667 10.95 1.33333 8 1.33333ZM8 9.66667C6.71333 9.66667 5.66667 8.62 5.66667 7.33333C5.66667 6.04667 6.71333 5 8 5C9.28667 5 10.3333 6.04667 10.3333 7.33333C10.3333 8.62 9.28667 9.66667 8 9.66667Z"
+                fill="white"
+              />
+            </svg>
+            <span>Казань</span>
+          </button>
+
+          <div class="header__socials">
+            <a href="#" aria-label="WhatsApp"
+              ><img src="assets/icons/icon-3.svg" alt="WhatsApp"
+            /></a>
+            <a href="#" aria-label="Telegram"
+              ><img src="assets/icons/icon-2.svg" alt="Telegram"
+            /></a>
+            <a href="#" aria-label="VK"
+              ><img src="assets/icons/icon-1.svg" alt="VK"
+            /></a>
+          </div>
+
+          <button class="header__login-btn" data-modal-open="modal-register">
+            Войти
+          </button>
+
+          <button class="header__burger-btn" aria-label="Открыть меню">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-menu">
+      <div class="mobile-menu__header">
+        <a href="/" class="header__logo">
+          <svg
+            width="39"
+            height="39"
+            viewBox="0 0 39 39"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.1641 21.997H21.6713L19.4076 15.6523L17.1641 21.997Z"
+              fill="white"
+            />
+            <path
+              d="M19.5 0C8.73046 0 0 8.73046 0 19.5C0 30.2695 8.73046 39 19.5 39C30.2695 39 39 30.2696 39 19.5C39 8.73038 30.2695 0 19.5 0ZM24.1766 29.7377L23.0483 26.4122H15.7908L14.6567 29.7377H8.61175L16.6548 9.26266H22.1688L30.3881 29.7377H24.1766Z"
+              fill="white"
+            />
+          </svg>
+          <span>Академический<br />центр</span>
+        </a>
+        <button class="mobile-menu__close-btn" aria-label="Закрыть меню">
+          &times;
+        </button>
+      </div>
+      <nav class="mobile-menu__nav">
+        <ul>
+          <li>
+            <a href="#">Почему мы?</a>
+            <img src="assets/icons/mobile__arr-right.svg" alt="" />
+          </li>
+          <li>
+            <a href="#">Стоимость</a>
+            <img src="assets/icons/mobile__arr-right.svg" alt="" />
+          </li>
+          <li>
+            <a href="#">Гарантии</a>
+            <img src="assets/icons/mobile__arr-right.svg" alt="" />
+          </li>
+          <li>
+            <a href="#">Контакты</a>
+            <img src="assets/icons/mobile__arr-right.svg" alt="" />
+          </li>
+        </ul>
+      </nav>
+      <div class="mobile-menu__footer">
+        <button class="mobile-menu__main-action">
+          Узнать стоимость работы
+        </button>
+        <div class="mobile-menu__socials">
+          <a href="#" aria-label="WhatsApp"
+            ><img src="assets/icons/icon-3.svg" alt="WhatsApp"
+          /></a>
+          <a href="#" aria-label="Telegram"
+            ><img src="assets/icons/icon-2.svg" alt="Telegram"
+          /></a>
+          <a href="#" aria-label="VK"
+            ><img src="assets/icons/icon-1.svg" alt="VK"
+          /></a>
+        </div>
+        <button class="mobile-menu__login-btn" data-modal-open="modal-register">
+          Войти
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <div class="mobile-menu__header">
+        <a href="/" class="header__logo">
+          <svg
+            width="39"
+            height="39"
+            viewBox="0 0 39 39"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.1641 21.997H21.6713L19.4076 15.6523L17.1641 21.997Z"
+              fill="white"
+            />
+            <path
+              d="M19.5 0C8.73046 0 0 8.73046 0 19.5C0 30.2695 8.73046 39 19.5 39C30.2695 39 39 30.2696 39 19.5C39 8.73038 30.2695 0 19.5 0ZM24.1766 29.7377L23.0483 26.4122H15.7908L14.6567 29.7377H8.61175L16.6548 9.26266H22.1688L30.3881 29.7377H24.1766Z"
+              fill="white"
+            />
+          </svg>
+          <span>Академический<br />центр</span>
+        </a>
+        <button class="mobile-menu__close-btn" aria-label="Закрыть меню">
+          &times;
+        </button>
+      </div>
+      <nav class="mobile-menu__nav">
+        <ul>
+          <li><a href="#">Почему мы?</a></li>
+          <li><a href="#">Стоимость</a></li>
+          <li><a href="#">Гарантии</a></li>
+          <li><a href="#">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-menu__footer">
+        <button class="mobile-menu__main-action">
+          Узнать стоимость работы
+        </button>
+        <div class="mobile-menu__socials">
+          <a href="#" aria-label="WhatsApp"
+            ><img src="path/to/whatsapp-icon-dark.svg" alt="WhatsApp"
+          /></a>
+          <a href="#" aria-label="Telegram"
+            ><img src="path/to/telegram-icon-dark.svg" alt="Telegram"
+          /></a>
+          <a href="#" aria-label="VK"
+            ><img src="path/to/vk-icon-dark.svg" alt="VK"
+          /></a>
+        </div>
+        <button class="mobile-menu__login-btn" data-modal-open="modal-register">
+          Войти
+        </button>
+      </div>
+    </div>
+
+    <div class="modals">
+      <div class="modal" id="modal-register">
+        <div class="modal__content">
+          <button class="modal__close" data-modal-close>&times;</button>
+          <h2 class="modal__title">Регистрация</h2>
+
+          <form class="register-form" id="registration-form" novalidate>
+            <div class="form-field">
+              <input
+                class="form-field__input"
+                type="email"
+                id="reg-email"
+                name="email"
+                placeholder=" "
+                required
+              />
+              <label for="reg-email" class="form-field__label"
+                >Введите свой email</label
+              >
+              <div class="form-field__error">Неверный формат email</div>
+            </div>
+
+            <div class="form-field">
+              <div class="phone-input-wrapper">
+                <span class="phone-input__flag">🇷🇺</span>
+                <span class="phone-input__code">+7</span>
+                <input
+                  class="form-field__input"
+                  type="tel"
+                  id="reg-phone"
+                  name="phone"
+                  placeholder="(999)999-99-99 "
+                  required
+                />
+              </div>
+              <label for="reg-phone" class="form-field__label"></label>
+              <div class="form-field__error">Введите полный номер</div>
+            </div>
+
+            <button type="submit" class="register-form__submit">
+              Регистрация
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal" id="modal-promo" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1">
+          <div class="modal__content" role="dialog" aria-modal="true">
+            <button class="modal__close" data-modal-close aria-label="Закрыть">
+              &times;
+            </button>
+
+            <h2 class="modal__title">
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.7099 2.62012L4.93994 13.9001H13.2899L12.1899 21.3801L19.0599 9.17012H11.8099L10.7099 2.62012Z"
+                  stroke="#FDB022"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>Введите промокод</span>
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.7099 2.62012L4.93994 13.9001H13.2899L12.1899 21.3801L19.0599 9.17012H11.8099L10.7099 2.62012Z"
+                  stroke="#FDB022"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </h2>
+
+            <form class="modal-form" id="promo-form">
+              <div class="modal-form__field">
+                <input
+                  type="text"
+                  id="promo-input"
+                  placeholder="Введите промокод сюда"
+                />
+
+                <span class="modal-form__feedback"></span>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Получить скидку
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="modal-promo-success" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-modal-close>
+          <div
+            class="modal__content modal__content--success"
+            role="dialog"
+            aria-modal="true"
+          >
+            <button
+              class="modal__close"
+              data-modal-close
+              aria-label="Закрыть"
+            ></button>
+
+            <div class="modal__icon">
+              <img src="assets/icons/success.svg" alt="Успешно" />
+            </div>
+
+            <h2 class="modal__title">Успешно</h2>
+            <p class="modal__subtitle">
+              Мы отправили информацию о стоимости на вашу электронную почту.
+            </p>
+
+            <button type="button" class="btn btn-primary" data-modal-close>
+              Закрыть
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================================================
+   МОДАЛЬНОЕ ОКНО ВЫБОРА ГОРОДА
+   ========================================================================== -->
+      <div class="modal modal--right" id="modal-city" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-modal-close>
+          <div class="modal__content" role="dialog" aria-modal="true">
+            <div class="city-modal__header">
+              <div class="city-modal__title-wrapper">
+                <h2 class="modal__title">Выберите город</h2>
+                <button
+                  class="modal__close"
+                  data-modal-close
+                  aria-label="Закрыть"
+                ></button>
+              </div>
+              <p class="modal__subtitle">
+                Работаем с ВУЗами России и стран ЕАЭС
+              </p>
+              <div class="city-modal__search-wrapper">
+                <input
+                  type="search"
+                  id="city-search-input"
+                  placeholder="Введите ваш город"
+                />
+                <svg
+                  class="city-modal__search-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z"
+                    stroke="#667085"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <ul class="city-modal__list" id="city-list">
+              <li><a href="#" data-modal-close>Москва</a></li>
+              <li><a href="#" data-modal-close>Санкт-Петербург</a></li>
+              <li><a href="#" data-modal-close>Казань</a></li>
+              <li><a href="#" data-modal-close>Екатеринбург</a></li>
+              <li><a href="#" data-modal-close>Новосибирск</a></li>
+              <li><a href="#" data-modal-close>Нижний Новгород</a></li>
+              <li><a href="#" data-modal-close>Самара</a></li>
+              <li><a href="#" data-modal-close>Архангельск</a></li>
+              <li><a href="#" data-modal-close>Астрахань</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="modal-success">
+        <div class="modal__content modal__content--success">
+          <button class="modal__close" data-modal-close>&times;</button>
+          <img
+            src="assets/icons/success-icon.svg"
+            alt="Успешно"
+            class="success-modal__icon"
+          />
+          <h2 class="modal__title">Успешно</h2>
+          <p class="modal__subtitle">
+            Мы отправили информацию о стоимости на вашу электронную почту.
+          </p>
+          <button class="success-modal__close-btn" data-modal-close>
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="hero__inner">
+          <!-- <div
+          class="hero__sticker hero__sticker--arrup"
+          data-parallax-speed="5"
+        >
+          <picture>
+            <source srcset="assets/icons/arr__up.svg" type="image/webp" />
+            <img src="assets/icons/arr__up.svg" alt="" />
+          </picture>
+        </div> -->
+          <div
+            class="hero__sticker hero__sticker--girl-orange"
+            data-parallax-speed="-8"
+          >
+            <picture>
+              <source srcset="assets/img/hero__bg-left.png" type="image/webp" />
+              <img src="assets/img/hero__bg-left.png" alt="" />
+            </picture>
+          </div>
+          <div
+            class="hero__sticker hero__sticker--bulb"
+            data-parallax-speed="3"
+          >
+            <picture>
+              <source
+                srcset="assets/img/hero__bg-right.png"
+                type="image/webp"
+              />
+              <img src="assets/img/hero__bg-right.png" alt="" />
+            </picture>
+          </div>
+          <!-- 
+                СКЕЛЕТОН ДЛЯ ПРЕДЗАГРУЗКИ
+                Появится на втором этапе анимации
+            -->
+          <div class="container">
+            <div class="hero__skeleton">
+              <div class="skeleton-box skeleton-box--staff"></div>
+              <div class="skeleton-box skeleton-box--title"></div>
+              <div class="skeleton-box skeleton-box--subtitle"></div>
+              <div class="skeleton-box skeleton-box--input"></div>
+              <div class="skeleton-box skeleton-box--input"></div>
+              <div class="skeleton-box skeleton-box--button"></div>
+            </div>
+
+            <!-- 
+              ОСНОВНОЙ КОНТЕНТ БЛОКА
+              Появится на третьем этапе анимации
+            -->
+
+            <div class="hero__content">
+              <div class="hero__arr-up">
+                <img src="assets/icons/arr__up.svg" alt="" />
+                <p class="hero__decor-text text-up">
+                  Потрать 2 минуты, отправь заявку — сэкономь 1000 руб!
+                </p>
+              </div>
+              <div class="hero__arr-down">
+                <img src="assets/icons/arr__down.svg" alt="" />
+                <p class="hero__decor-text text-down">
+                  Быстро и бесплатно узнай цену - действуй!
+                </p>
+              </div>
+              <div class="hero__staff">
+                <div class="staff__avatars">
+                  <span class="staff__avatar"
+                    ><img src="assets/img/avatar-1.png" alt=""
+                  /></span>
+                  <span class="staff__avatar"
+                    ><img src="assets/img/avatar-2.png" alt=""
+                  /></span>
+                  <span class="staff__avatar"
+                    ><img src="assets/img/avatar-3.png" alt=""
+                  /></span>
+                  <span class="staff__avatar"
+                    ><img src="assets/img/avatar-4.png" alt=""
+                  /></span>
+                  <span class="staff__avatar staff__avatar--more">60+</span>
+                </div>
+                <p class="staff__text">
+                  Более 60 квалифицированных сотрудников
+                </p>
+              </div>
+              <h1 class="hero__title">Напиши <span> дипломную</span> работу</h1>
+              <p class="hero__subtitle">
+                Мы поможем написать дипломную работу без ИИ, которая точно
+                понравится твоему научному руководителю и пройдет антиплагиат
+              </p>
+              <form action="#" class="hero__form">
+                <div class="form-group">
+                  <label for="work-theme" class="form-group__label"
+                    >Введите тему своей работы</label
+                  >
+                  <input
+                    type="text"
+                    id="work-theme"
+                    class="form-group__input"
+                    value="Гражданское общество в РФ"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email" class="form-group__label"
+                    >Введите email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-group__input"
+                    value="student@mail.ru"
+                  />
+                  <a
+                    href="#"
+                    id="promo-offer"
+                    class="form-group__promo-link"
+                    data-modal-open="modal-promo"
+                    >есть промокод</a
+                  >
+                </div>
+                <button type="submit" class="hero__submit-btn">
+                  Узнать стоимость
+                </button>
+              </form>
+              <p class="hero__disclaimer">
+                Нажимая “Узнать стоимость” я принимаю соглашение, даю согласие
+                на обработку моих персональных данных
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="advantages">
+        <div class="container">
+          <div class="advantages__skeleton">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+
+          <div class="advantages__grid">
+            <div class="advantage-card" data-aos-delay="0">
+              <h3 class="advantage-card__title">от 9 900 руб</h3>
+              <p class="advantage-card__description">Предоплата 50%</p>
+            </div>
+            <div class="advantage-card" data-aos-delay="200">
+              <h3 class="advantage-card__title">14-30 дней</h3>
+              <p class="advantage-card__description">
+                Но можем не поспать и написать за 48 часов
+              </p>
+            </div>
+            <div class="advantage-card" data-aos-delay="400">
+              <h3 class="advantage-card__title">Бесплатные доработки</h3>
+              <p class="advantage-card__description">
+                В рамках заказа до самой защиты
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="steps">
+        <div class="container steps__container">
+          <h2 class="steps__title title-h2">
+            Это правда быстрее и удобнее, чем всё делать самому
+          </h2>
+          <div class="steps-timeline">
+            <div class="step-item" data-step="1">
+              <div class="step-card">
+                <svg
+                  class="card-border"
+                  width="100%"
+                  height="100%"
+                  preserveAspectRatio="none"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="calc(100% - 2px)"
+                    height="calc(100% - 2px)"
+                    rx="15"
+                    ry="15"
+                  ></rect>
+                </svg>
+                <div class="step-card__header">
+                  <img
+                    class="step-card__img"
+                    src="assets/img/circle-icon-1.png"
+                    alt=""
+                  />
+                  <span class="step-card__number">1</span>
+                  <span class="step-card__duration">2 минуты</span>
+                </div>
+                <h3 class="step-card__title">Отправь заявку</h3>
+                <p class="step-card__description">
+                  Укажи в ней тему своей дипломной работы, специальность,
+                  требования к оригинальности, приложи задание, методические
+                  указания или имеющиеся наработки. Мы все изучим и назовем
+                  точную стоимость.
+                </p>
+              </div>
+              <div class="step-icon-wrapper">
+                <div class="step-icon">
+                  <img src="assets/img/ico-1.png" alt="" />
+                </div>
+                <div class="step-line"></div>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="2">
+              <div class="step-card">
+                <svg
+                  class="card-border"
+                  width="100%"
+                  height="100%"
+                  preserveAspectRatio="none"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="calc(100% - 2px)"
+                    height="calc(100% - 2px)"
+                    rx="15"
+                    ry="15"
+                  ></rect>
+                </svg>
+                <div class="step-card__header">
+                  <img
+                    class="step-card__img"
+                    src="assets/img/circle-icon-2.png"
+                    alt=""
+                  />
+                  <span class="step-card__number">2</span>
+                  <span class="step-card__duration">2 дня</span>
+                </div>
+                <h3 class="step-card__title">Согласуй план</h3>
+                <p class="step-card__description">
+                  На этом этапе за 1-2 дня мы подготовим детализированный план
+                  работы, который вы согласуете с научным руководителем
+                </p>
+              </div>
+              <div class="step-icon-wrapper">
+                <div class="step-icon">
+                  <img src="assets/img/ico-2.png" alt="" />
+                </div>
+                <div class="step-line"></div>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="3">
+              <div class="step-card">
+                <svg
+                  class="card-border"
+                  width="100%"
+                  height="100%"
+                  preserveAspectRatio="none"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="calc(100% - 2px)"
+                    height="calc(100% - 2px)"
+                    rx="15"
+                    ry="15"
+                  ></rect>
+                </svg>
+                <div class="step-card__header">
+                  <img
+                    class="step-card__img"
+                    src="assets/img/circle-icon-3.png"
+                    alt=""
+                  />
+                  <span class="step-card__number">3</span>
+                  <span class="step-card__duration">14 дней</span>
+                </div>
+                <h3 class="step-card__title">Получи дипломную работу</h3>
+                <p class="step-card__description">
+                  Поэтапно — главу за главой поможем тебе с написанием самой
+                  дипломной работы без плагиата и ИИ. Оплатить услуги
+                  производится комфортными частями также поэтапно до полной
+                  готовности
+                </p>
+              </div>
+              <div class="step-icon-wrapper">
+                <div class="step-icon">
+                  <img src="assets/img/ico-3.png" alt="" />
+                </div>
+                <div class="step-line"></div>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="4">
+              <div class="step-card">
+                <svg
+                  class="card-border"
+                  width="100%"
+                  height="100%"
+                  preserveAspectRatio="none"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="calc(100% - 2px)"
+                    height="calc(100% - 2px)"
+                    rx="15"
+                    ry="15"
+                  ></rect>
+                </svg>
+                <div class="step-card__header">
+                  <img
+                    class="step-card__img"
+                    src="assets/img/circle-icon-4.png"
+                    alt=""
+                  />
+                  <span class="step-card__number">4</span>
+                  <span class="step-card__duration">10 дней</span>
+                </div>
+                <h3 class="step-card__title">Бесплатно исправим замечания</h3>
+                <p class="step-card__description">
+                  Исправляем замечания научного руководителя. Все доработки в
+                  рамках заказа Мы помогаем сделать абсолютно бесплатно.
+                  Гарантия качества на нашу работу действует до тех пор, пока вы
+                  её не защитите.
+                </p>
+              </div>
+              <div class="step-icon-wrapper">
+                <div class="step-icon">
+                  <img src="assets/img/ico-4.png" alt="" />
+                </div>
+                <div class="step-line"></div>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="5">
+              <div class="step-card">
+                <svg
+                  class="card-border"
+                  width="100%"
+                  height="100%"
+                  preserveAspectRatio="none"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="calc(100% - 2px)"
+                    height="calc(100% - 2px)"
+                    rx="15"
+                    ry="15"
+                  ></rect>
+                </svg>
+                <div class="step-card__header">
+                  <img
+                    class="step-card__img"
+                    src="assets/img/circle-icon-5.png"
+                    alt=""
+                  />
+                  <span class="step-card__number">5</span>
+                  <span class="step-card__duration">5 дней</span>
+                </div>
+                <h3 class="step-card__title">Подготовим к защите</h3>
+                <p class="step-card__description">
+                  Мы поможем подготовить презентацию и защитную речь для того,
+                  чтобы вы смогли профессионально выступить, и обязательно
+                  подскажем на чем сделать основной акцент.
+                </p>
+              </div>
+              <div class="step-icon-wrapper">
+                <div class="step-icon">
+                  <img src="assets/img/ico-5.png" alt="" />
+                </div>
+                <div class="step-line"></div>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="6">
+              <div class="step-icon-wrapper">
+                <div class="step-icon">
+                  <img src="assets/img/ico-6.png" alt="" />
+                </div>
+                <div class="step-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <div class="expanding-circle"></div>
+        <div class="final-cta__sticky-content container">
+          <div class="final-cta__text-wrapper">
+            <h2 class="final-cta__title">
+              С нами это действительно проще чем ты думаешь –
+              <span class="highlight">действуй!</span>
+            </h2>
+
+            <div class="final-cta__button-wrapper">
+              <button class="cta-button" data-modal-open="modal-register">
+                Узнать стоимость работы
+              </button>
+            </div>
+
+            <p class="final-cta__disclaimer">
+              * Сроки и последовательность при поэтапном выполнении указаны
+              исходя из сложившейся практики и могут быть как меньше, так и
+              больше в зависимости от твоей специальности и требований к работе.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="authors">
+        
+          <h2 class="authors__title title-h2">Топ 10 авторов дипломных работ</h2>
+
+          <div class="authors-slider-wrapper container">
+            <div class="swiper authors-slider">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="author-card">
+                    <div class="author-card__header">
+                      <div class="author-card__left">
+                        <img
+                          src="assets/img/avatar__slider.png"
+                          alt="Айдар З."
+                          class="author-card__avatar"
+                        />
+                        <div class="author-card__info">
+                          <h3 class="author-card__name">Айдар З.</h3>
+                          <p class="author-card__specialty">
+                            КЮН,<br> практикующий юрист
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="author-card__stats">
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/like.svg" alt="">
+                          <span>353</span>
+                        </div>
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/star.svg" alt="">
+                          <span>5.0</span>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="author-card__perks">
+                      <li><img src="assets/icons/galka.svg" alt=""><span>11 лет и 5 месяцев сотрудничества</span></li>
+                      <li><img src="assets/icons/document.svg" alt=""><span>318 дипломных работ сдано</span></li>
+                      <li><img src="assets/icons/law.svg" alt=""><span>ЮФУ, КИУ, МФПУ Синергия</span></li>
+                    </ul>
+                    <div class="author-card__tags">
+                      <span class="tag"
+                        >Анализ финансово-хозяйственной деятельности</span
+                      >
+                      <span class="tag">Бизнес планирование</span>
+                      <span class="tag">Банковское дело</span>
+                      <span class="tag">Бюджетная система</span>
+                      <span class="tag">Бухгалтерский учет и аудит</span>
+                      <span class="tag">Внешнеэкономическая деятельность</span>
+                      <span class="tag">Государственное управление</span>
+                      <span class="tag">Гостиничный и туристский бизнес</span>
+                      <span class="tag">Биржевое дело</span>
+                      <span class="tag">Банковское дело</span>
+                  </div>
+
+                  <div class="works-accordion">
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="author-card">
+                    <div class="author-card__header">
+                      <div class="author-card__left">
+                        <img
+                          src="assets/img/avatar__slider.png"
+                          alt="Айдар З."
+                          class="author-card__avatar"
+                        />
+                        <div class="author-card__info">
+                          <h3 class="author-card__name">Айдар З.</h3>
+                          <p class="author-card__specialty">
+                            КЮН,<br> практикующий юрист
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="author-card__stats">
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/like.svg" alt="">
+                          <span>353</span>
+                        </div>
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/star.svg" alt="">
+                          <span>5.0</span>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="author-card__perks">
+                      <li><img src="assets/icons/galka.svg" alt=""><span>11 лет и 5 месяцев сотрудничества</span></li>
+                      <li><img src="assets/icons/document.svg" alt=""><span>318 дипломных работ сдано</span></li>
+                      <li><img src="assets/icons/law.svg" alt=""><span>ЮФУ, КИУ, МФПУ Синергия</span></li>
+                    </ul>
+                    <div class="author-card__tags">
+                      <span class="tag"
+                        >Анализ финансово-хозяйственной деятельности</span
+                      >
+                      <span class="tag">Бизнес планирование</span>
+                      <span class="tag">Банковское дело</span>
+                      <span class="tag">Бюджетная система</span>
+                      <span class="tag">Бухгалтерский учет и аудит</span>
+                      <span class="tag">Внешнеэкономическая деятельность</span>
+                      <span class="tag">Государственное управление</span>
+                      <span class="tag">Гостиничный и туристский бизнес</span>
+                      <span class="tag">Биржевое дело</span>
+                      <span class="tag">Банковское дело</span>
+                  </div>
+
+                  <div class="works-accordion">
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="author-card">
+                    <div class="author-card__header">
+                      <div class="author-card__left">
+                        <img
+                          src="assets/img/avatar__slider.png"
+                          alt="Айдар З."
+                          class="author-card__avatar"
+                        />
+                        <div class="author-card__info">
+                          <h3 class="author-card__name">Айдар З.</h3>
+                          <p class="author-card__specialty">
+                            КЮН,<br> практикующий юрист
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="author-card__stats">
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/like.svg" alt="">
+                          <span>353</span>
+                        </div>
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/star.svg" alt="">
+                          <span>5.0</span>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="author-card__perks">
+                      <li><img src="assets/icons/galka.svg" alt=""><span>11 лет и 5 месяцев сотрудничества</span></li>
+                      <li><img src="assets/icons/document.svg" alt=""><span>318 дипломных работ сдано</span></li>
+                      <li><img src="assets/icons/law.svg" alt=""><span>ЮФУ, КИУ, МФПУ Синергия</span></li>
+                    </ul>
+                    <div class="author-card__tags">
+                      <span class="tag"
+                        >Анализ финансово-хозяйственной деятельности</span
+                      >
+                      <span class="tag">Бизнес планирование</span>
+                      <span class="tag">Банковское дело</span>
+                      <span class="tag">Бюджетная система</span>
+                      <span class="tag">Бухгалтерский учет и аудит</span>
+                      <span class="tag">Внешнеэкономическая деятельность</span>
+                      <span class="tag">Государственное управление</span>
+                      <span class="tag">Гостиничный и туристский бизнес</span>
+                      <span class="tag">Биржевое дело</span>
+                      <span class="tag">Банковское дело</span>
+                  </div>
+
+                  <div class="works-accordion">
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="author-card">
+                    <div class="author-card__header">
+                      <div class="author-card__left">
+                        <img
+                          src="assets/img/avatar__slider.png"
+                          alt="Айдар З."
+                          class="author-card__avatar"
+                        />
+                        <div class="author-card__info">
+                          <h3 class="author-card__name">Айдар З.</h3>
+                          <p class="author-card__specialty">
+                            КЮН,<br> практикующий юрист
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="author-card__stats">
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/like.svg" alt="">
+                          <span>353</span>
+                        </div>
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/star.svg" alt="">
+                          <span>5.0</span>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="author-card__perks">
+                      <li><img src="assets/icons/galka.svg" alt=""><span>11 лет и 5 месяцев сотрудничества</span></li>
+                      <li><img src="assets/icons/document.svg" alt=""><span>318 дипломных работ сдано</span></li>
+                      <li><img src="assets/icons/law.svg" alt=""><span>ЮФУ, КИУ, МФПУ Синергия</span></li>
+                    </ul>
+                    <div class="author-card__tags">
+                      <span class="tag"
+                        >Анализ финансово-хозяйственной деятельности</span
+                      >
+                      <span class="tag">Бизнес планирование</span>
+                      <span class="tag">Банковское дело</span>
+                      <span class="tag">Бюджетная система</span>
+                      <span class="tag">Бухгалтерский учет и аудит</span>
+                      <span class="tag">Внешнеэкономическая деятельность</span>
+                      <span class="tag">Государственное управление</span>
+                      <span class="tag">Гостиничный и туристский бизнес</span>
+                      <span class="tag">Биржевое дело</span>
+                      <span class="tag">Банковское дело</span>
+                  </div>
+
+                  <div class="works-accordion">
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="author-card">
+                    <div class="author-card__header">
+                      <div class="author-card__left">
+                        <img
+                          src="assets/img/avatar__slider.png"
+                          alt="Айдар З."
+                          class="author-card__avatar"
+                        />
+                        <div class="author-card__info">
+                          <h3 class="author-card__name">Айдар З.</h3>
+                          <p class="author-card__specialty">
+                            КЮН,<br> практикующий юрист
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="author-card__stats">
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/like.svg" alt="">
+                          <span>353</span>
+                        </div>
+                        <div class="author-card__stat-item">
+                          <img src="assets/icons/star.svg" alt="">
+                          <span>5.0</span>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="author-card__perks">
+                      <li><img src="assets/icons/galka.svg" alt=""><span>11 лет и 5 месяцев сотрудничества</span></li>
+                      <li><img src="assets/icons/document.svg" alt=""><span>318 дипломных работ сдано</span></li>
+                      <li><img src="assets/icons/law.svg" alt=""><span>ЮФУ, КИУ, МФПУ Синергия</span></li>
+                    </ul>
+                    <div class="author-card__tags">
+                      <span class="tag"
+                        >Анализ финансово-хозяйственной деятельности</span
+                      >
+                      <span class="tag">Бизнес планирование</span>
+                      <span class="tag">Банковское дело</span>
+                      <span class="tag">Бюджетная система</span>
+                      <span class="tag">Бухгалтерский учет и аудит</span>
+                      <span class="tag">Внешнеэкономическая деятельность</span>
+                      <span class="tag">Государственное управление</span>
+                      <span class="tag">Гостиничный и туристский бизнес</span>
+                      <span class="tag">Биржевое дело</span>
+                      <span class="tag">Банковское дело</span>
+                  </div>
+
+                  <div class="works-accordion">
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <div class="accordion-item__header">
+                        <span class="accordion-item__title">Заказ №75247</span>
+                        <span class="accordion-item__arrow"></span>
+                      </div>
+                      <div class="accordion-item__content">
+                        <div class="work-details">
+                          <p class="work-details__type">
+                            Дипломная работа, Оценочная деятельность
+                          </p>
+                          <h4 class="work-details__title">
+                            Гражданско-правовое регулирование интернет-сайта как
+                            объекта авторских прав
+                          </h4>
+                          <div class="work-details__tags">
+                            <span>103 с</span>
+                            <span>75%</span>
+                            <span>сдан 29.04.2025</span>
+                          </div>
+                          <p class="work-details__price">24 900 рублей</p>
+                          <p class="work-details__description">
+                            Была только тема и методички. За 4 дня составили
+                            план и подобрали литературу. Руководитель утвердил
+                            (план я немного переформулируем название позже). 1
+                            глава готова через 10 дней.
+                          </p>
+                          <div class="work-details__review">
+                            <img
+                              src="path/to/reviewer-avatar.jpg"
+                              alt="Татьяна"
+                              class="work-details__reviewer-avatar"
+                            />
+                            <div class="work-details__review-info">
+                              <span>Татьяна</span>
+                              <div class="work-details__stars">★★★★★</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                </div>
+              </div>
+
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+
+              <div class="swiper-pagination"></div>
+          
+            </div>
+          </div>
+      </section>
+
+      <section class="reasons">
+        <div class="container">
+          <div class="reasons__inner">
+            <h2 class="reasons__title title-h2">
+            Почему каждый день нам доверяют написание 18 дипломных работ?
+          </h2>
+
+          <div class="reasons-slider-wrapper">
+            <div class="swiper reasons-slider">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="reason-card">
+                    <div class="reason-card__header">
+                      <div class="reason-card__number">1</div>
+                      <h3 class="reason-card__title">Заключение договора</h3>
+
+                    </div>
+                    
+                    <p class="reason-card__description">
+                      Заключаем договор и соблюдаем все условия. Используем
+                      только безопасные методы оплаты
+                    </p>
+                  </div>
+                  <div class="reason-image">
+                    <img src="assets/img/step-img-1.png" alt="Заключение договора" />
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="reason-card">
+                    <div class="reason-card__header">
+                      <div class="reason-card__number">2</div>
+                    <h3 class="reason-card__title">Гарантия оригинальности</h3>
+                    </div>
+                    
+                    <p class="reason-card__description">
+                     Проводим многоуровневый контроль материалов для вашей дипломной работы. Предоставляем отчет по системе Антиплагиат
+                    </p>
+                  </div>
+                  <div class="reason-image">
+                    <img src="assets/img/step-img-2.png" alt="Строгие сроки" />
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="reason-card">
+                    <div class="reason-card__header">
+                      <div class="reason-card__number">3</div>
+                    <h3 class="reason-card__title">Гарантия оригинальности</h3>
+                    </div>
+                    
+                    <p class="reason-card__description">
+                      Проводим многоуровневый контроль материалов для вашей дипломной работы. Предоставляем отчет по системе Антиплагиат
+                    </p>
+                  </div>
+                  <div class="reason-image">
+                    <img
+                      src="assets/img/step-img-3.png"
+                      alt="Гарантия оригинальности"
+                    />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="reason-card">
+                    <div class="reason-card__header">
+                      <div class="reason-card__number">4</div>
+                    <h3 class="reason-card__title">Круглосуточная поддержка</h3>
+                    </div>
+                    
+                    
+                    <p class="reason-card__description">
+                      Работаем без перерывов на обед и прочих неожиданностей. Сопровождаем вас до полной сдачи или защиты
+                    </p>
+                  </div>
+                  <div class="reason-image">
+                    <img
+                      src="assets/img/step-img-4.png"
+                      alt="Гарантия оригинальности"
+                    />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="reason-card">
+                    <div class="reason-card__header">
+                      <div class="reason-card__number">5</div>
+                    <h3 class="reason-card__title">Надёжный выбор</h3>
+                    </div>
+                    
+                    <p class="reason-card__description">
+                      Вы гарантированно получаете результат лучшего качества точно всрок или возвращаем деньги
+                    </p>
+                  </div>
+                  <div class="reason-image">
+                    <img
+                      src="assets/img/step-img-5.png"
+                      alt="Гарантия оригинальности"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          
+        </div>
+      </section>
+
+      <section class="calculator">
+        <div class="container">
+          <div class="calculator__inner">
+            <h2 class="calculator__title title-h2">
+            Узнай цену своей дипломной работы прямо сейчас
+          </h2>
+
+          <form id="price-calculator" class="calculator-form" novalidate>
+            <div class="progress-bar">
+              <div class="progress-bar__line">
+                <div class="progress-bar__fill"></div>
+              </div>
+              <div class="progress-bar__text">
+                <img src="assets/img/money-icon.png" alt="подарок" />
+                <span>Достигни 80% и получи 1000 руб</span>
+              </div>
+            </div>
+
+            <fieldset class="form-step is-active" data-step="1">
+              <div class="form-grid">
+                <div class="form-column">
+                  <div class="form-field">
+                    <label for="work-type">Выбери тип задания</label>
+                    <select id="work-type" name="workType" required>
+                      <option value="diploma">Дипломная работа</option>
+                      <option value="coursework">Курсовая работа</option>
+                      <option value="master-thesis">
+                        Магистерская диссертация
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="subject">Укажи предмет</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      placeholder="Гражданское право и процесс"
+                      required
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="deadline">Укажите срок выполнения</label>
+
+                    <input
+                      type="text"
+                      id="deadline"
+                      name="deadline"
+                      placeholder="Выберите период"
+                      required
+                      readonly
+                    />
+                  </div>
+                </div>
+
+                <div class="form-column">
+                  <div class="form-field">
+                    <label for="pages-range">Укажи кол-во страниц</label>
+                    <div class="range-slider">
+                      <input
+                        type="range"
+                        id="pages-range"
+                        name="pages"
+                        min="10"
+                        max="300"
+                        value="90"
+                      />
+                      <div class="range-slider__value" id="pages-value">
+                        90 стр
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <label for="originality-range">Оригинальность</label>
+                    <div class="range-slider">
+                      <input
+                        type="range"
+                        id="originality-range"
+                        name="originality"
+                        min="50"
+                        max="100"
+                        value="70"
+                      />
+                      <div class="range-slider__value" id="originality-value">
+                        70%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-step" data-step="2" style="display: none">
+              <div class="form-field">
+                <label for="email">Введите свой email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="student@email.com"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="phone">Введите телефон</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+7 (999) 999 99 99"
+                  required
+                />
+              </div>
+              <a href="#" class="promo-link" data-modal-open="modal-promo">У меня есть промокод</a>
+            </fieldset>
+
+            <fieldset class="form-step" data-step="3" style="display: none">
+              <div class="form-field">
+                <label for="topic">Напиши тему</label>
+                <input
+                  type="text"
+                  id="topic"
+                  name="topic"
+                  placeholder="Порядок назначения и производства судебной экспертизы"
+                  required
+                />
+              </div>
+              <div class="form-field__wrapper">
+                <div class="form-field">
+                <label for="requirements"
+                  >Опиши план и требования к работе</label
+                >
+                <textarea
+                  id="requirements"
+                  name="requirements"
+                  rows="5"
+                  placeholder="Введение, ГЛАВА I..."
+                  required
+                ></textarea>
+              </div>
+              <div class="form-field">
+                <label for="files"
+                  >Перетащи сюда файлы и методичку если есть</label
+                >
+
+                <input
+                  type="file"
+                  id="files"
+                  name="files"
+                  multiple
+                  style="display: none"
+                />
+
+                <div class="file-dropzone" id="file-dropzone">
+                  <img src="assets/icons/files-icon.svg" alt="Загрузить" />
+                  <p>Приложи файлы</p>
+                  <div class="file-list" id="file-list"></div>
+                </div>
+                
+              </div>
+
+              </div>
+              
+            </fieldset>
+
+            <div class="form-navigation">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="prev-btn"
+                style="display: none"
+              >
+                Назад
+              </button>
+              <button type="button" class="btn btn-primary" id="next-btn">
+                Далее
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="submit-btn"
+                style="display: none"
+              >
+                Узнать стоимость
+              </button>
+            </div>
+            <p class="form-disclaimer">
+              Оставляя свои контактные данные и нажимая кнопку «Далее», я принимаю соглашение, даюсогласие на обработку моих персональных данных и на регистрацию личного кабинета 
+            </p>
+          </form>
+          </div>          
+        </div>
+      </section>
+      
+      <section class="services">
+    <div class="container">
+      <div class="services__inner">
+        <h2 class="services__title title-h2">Вот с чем ещё мы можем помочь</h2>
+
+        
+        <div class="services-toggle">
+            <div class="toggle-glider"></div>
+            <button type="button" class="toggle-button is-active" data-view="types">По типам работ</button>
+            <button type="button" class="toggle-button" data-view="subjects">По предметам</button>
+        </div>
+
+        
+        <div class="services-content-wrapper">
+            
+            
+            <div class="services-content is-active" id="view-types">
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-1.svg" alt=""></div>
+                    <p class="service-item__name">Курсовая работа</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-2.svg" alt=""></div>
+                    <p class="service-item__name">Дипломная работа</p>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-3.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-4.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-5.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-6.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-7.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-8.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-9.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-10.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-11.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-12.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-13.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-14.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-15.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-16.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-17.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-item__icon"><img src="assets/icons/ico-18.svg" alt=""></div>
+                    <p class="service-item__name">Бизнес-план</p>
+                </div>
+            </div>
+
+            
+            <div class="services-content" id="view-subjects">
+                <div class="subject-grid">
+                    <div class="subject-category">
+                        <h3 class="subject-category__title">Экономические</h3>
+                        <ul class="subject-list">
+                            <li>Анализ финансово-хозяйственной деятельности</li>
+                            <li>Бухгалтерский учет</li>
+                            <li>Банковское дело</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="subject-category">
+                        <h3 class="subject-category__title">Юридические</h3>
+                        <ul class="subject-list">
+                            <li>Административное право</li>
+                            <li>Гражданское право</li>
+                            <li>Конституционное право</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="subject-category">
+                        <h3 class="subject-category__title">Гуманитарные</h3>
+                        <ul class="subject-list">
+                            <li>История</li>
+                            <li>Политология</li>
+                            <li>Социология</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="subject-category">
+                        <h3 class="subject-category__title">Технические</h3>
+                        <ul class="subject-list">
+                            <li>Архитектура</li>
+                            <li>Информатика</li>
+                            <li>Программирование</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+      </div>
+        
+    </div>
+      </section>
+
+    </main>
+    
+<footer class="footer">
+  
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__top">
+            <div class="footer__main">
+                <div class="footer__breadcrumbs">
+                    <a href="#">Главная</a>
+                    <span>/</span>
+                    <a href="#">Заказать дипломную работу</a>
+                </div>
+                <h2 class="footer__title">Диплом под ключ — без стресса и бессонных ночей.</h2>
+                <div class="footer__contacts">
+                    <a href="tel:88001008895" class="footer__phone">8 (800) 100-88-95</a>
+                    <a href="mailto:academ.centr@mail.ru" class="footer__email">academ.centr@mail.ru</a>
+                </div>
+            </div>
+            <div class="footer__actions">
+                <div class="footer__socials">
+                    <a href="#" aria-label="WhatsApp"><img src="assets/icons/whatsapp-dark.svg" alt="WhatsApp"></a>
+                    <a href="#" aria-label="Telegram"><img src="assets/icons/telegram-dark.svg" alt="Telegram"></a>
+                    <a href="#" aria-label="VK"><img src="assets/icons/vk-dark.svg" alt="VK"></a>
+                </div>
+                <div class="footer__buttons">
+                    <button class="footer-btn footer-btn--primary">Узнать стоимость</button>
+                    <button class="footer-btn footer-btn--secondary">Связаться с нами</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="footer__middle">
+            <nav class="footer__nav">
+                <ul class="footer__nav-list">
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Отзывы</a></li>
+                    <li><a href="#">Услуги</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                </ul>
+                <ul class="footer__nav-list">
+                    <li><a href="#">Тематические подборки материалов</a></li>
+                    <li><a href="#">Карта сайта</a></li>
+                    <li><a href="#">Почему мы?</a></li>
+                    <li><a href="#">Стоимость</a></li>
+                    <li><a href="#">Гарантии</a></li>
+                </ul>
+            </nav>
+            <div class="footer__legal">
+                <div class="footer__payment-methods">
+                    <img src="assets/icons/payment-sbp.svg" alt="СБП">
+                    <img src="assets/icons/payment-mir.svg" alt="МИР">
+                    <img src="assets/icons/payment-visa.svg" alt="Visa">
+                    <img src="assets/icons/payment-mastercard.svg" alt="Mastercard">
+                    <img src="assets/icons/payment-googlepay.svg" alt="Google Pay">
+                </div>
+                <ul class="footer__legal-links">
+                    <li><a href="#">Положения договора</a></li>
+                    <li><a href="#">Обработка персональных данных</a></li>
+                    <li><a href="#">Конфиденциальность</a></li>
+                    <li><a href="#">Условия возврата/отказа</a></li>
+                </ul>
+            </div>
+        </div>
+
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">© Академический Центр — надежный сервис для учебы и бизнеса, 2000-2025</p>
+        </div>
+
+      </div>
+
+        
+        
+    </div>
+</footer>
+
+<div class="container">
+  <div class="promo-banner is-visible">
+  <img class="promo-banner__img" src="assets/img/footer__img.png" alt="">
+  
+    <div class="container promo-banner__container">
+        <div class="promo-banner__text">
+            Узнай цену своей дипломной работы прямо сейчас и <span>получи 1000 руб</span>
+        </div>
+        <button class="promo-banner__btn">Калькулятор цены</button>
+        <button class="promo-banner__close" aria-label="Закрыть баннер">&times;</button>
+        <div class="promo-banner__image">
+            <img src="assets/img/calculator.png" alt="">
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/imask@6/dist/imask.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

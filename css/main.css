@@ -1,0 +1,3363 @@
+/* ==========================================================================
+   1. ШРИФТЫ, ПЕРЕМЕННЫЕ И БАЗОВЫЕ НАСТРОЙКИ
+   ========================================================================== */
+
+/* --- ПОДКЛЮЧЕНИЕ ЛОКАЛЬНЫХ ШРИФТОВ --- */
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Medium.woff2") format("woff2"),
+    url("../fonts/Manrope-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-SemiBold.woff2") format("woff2"),
+    url("../fonts/Manrope-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Tight";
+  src: url("../fonts/InterTight-Regular.woff2") format("woff2"),
+    url("../fonts/InterTight-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Tight";
+  src: url("../fonts/InterTight-Light.woff2") format("woff2"),
+    url("../fonts/InterTight-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Tight";
+  src: url("../fonts/InterTight-Regular.woff2") format("woff2"),
+    url("../fonts/InterTight-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Tight";
+  src: url("../fonts/InterTight-Medium.woff2") format("woff2"),
+    url("../fonts/InterTight-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Tight";
+  src: url("../fonts/InterTight-SemiBold.woff2") format("woff2"),
+    url("../fonts/InterTight-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Tight";
+  src: url("../fonts/InterTight-Bold.woff2") format("woff2"),
+    url("../fonts/InterTight-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "KurochkaLapkoi";
+  src: url("../fonts/Kurochkalapkoi.woff2") format("woff2"),
+    url("../fonts/Kurochkalapkoi.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ --- */
+:root {
+  --font-family: "Inter Tight", sans-serif;
+  --second-family: "Manrope", sans-serif;
+  --font-handwritten: "KurochkaLapkoi", sans-serif;
+  --background-gradient: linear-gradient(180deg, #4d4dff 0%, #15a7f5 100%);
+  --color-black: #333333;
+  --color-white: #fff;
+  --accent-dark: #324de3;
+  --secondary-text-color: #d9d9d9;
+  --input-text-color: #222222;
+  --skeleton-bg-color: rgba(255, 255, 255, 0.1);
+  --skeleton-pulse-color: rgba(255, 255, 255, 0.15);
+}
+
+/* --- СБРОС СТИЛЕЙ И ОСНОВА --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #F1F3F5;
+  color: #2D2D2D;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1780px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.title-h2 {
+  font-family: 'Inter Tight';
+  font-size: 44px;
+  font-weight: 600;
+  text-align: left; 
+  color: #08304C;
+}
+
+@media (min-width: 992px) {
+  .title-h2 {
+    font-size: 40px;
+    margin-bottom: 80px;
+    text-align: center;
+  }
+}
+@media (min-width: 1200px) {
+  .title-h2 {
+    font-size: 88px;
+    font-weight: 600;
+  }
+}
+
+/* ==========================================================================
+   2. РАЗДЕЛЕННАЯ АНИМАЦИЯ (CSS-часть)
+   ========================================================================== */
+
+/* --- Анимация HERO-блока --- */
+
+.hero__skeleton,
+.hero__content,
+.hero__sticker {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+.hero.skeleton-visible .hero__skeleton {
+  opacity: 1;
+}
+.hero.content-loaded .hero__skeleton {
+  opacity: 0;
+  display: none;
+}
+.hero.content-loaded .hero__content,
+.hero.content-loaded .hero__sticker {
+  opacity: 1;
+}
+.hero__content > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.hero.content-loaded .hero__content > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero.content-loaded .hero__staff {
+  transition-delay: 0.1s;
+}
+.hero.content-loaded .hero__title {
+  transition-delay: 0.2s;
+}
+.hero.content-loaded .hero__subtitle {
+  transition-delay: 0.3s;
+}
+.hero.content-loaded .hero__form {
+  transition-delay: 0.4s;
+}
+.hero.content-loaded .hero__disclaimer {
+  transition-delay: 0.5s;
+}
+
+.hero__title span::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background-color: var(--accent-dark);
+  top: -4px;
+  bottom: -4px;
+  left: -10px;
+  right: -10px;
+  border-radius: 6px;
+  transform-origin: left;
+  transform: scaleX(0) rotate(-1deg);
+  transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.hero.highlight-visible .hero__title span::before {
+  transform: scaleX(1) rotate(-1deg);
+}
+
+/* --- Анимация ADVANTAGES-блока (на скролл) --- */
+.advantage-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.advantages.is-visible .advantage-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ⭐ 2. ДОБАВЬТЕ ЭТОТ БЛОК: Анимация контента ВНУТРИ карточки ⭐ */
+.advantage-card__title,
+.advantage-card__description {
+  /* Изначально контент прозрачен и сдвинут вниз */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.advantages.is-visible .advantage-card__title,
+.advantages.is-visible .advantage-card__description {
+  /* При появлении секции контент становится видимым */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3. Устанавливаем ДОПОЛНИТЕЛЬНУЮ задержку для контента */
+.advantages.is-visible .advantage-card__title {
+  /* Эта задержка начнется ПОСЛЕ задержки самой карточки */
+  transition-delay: 0.3s;
+}
+.advantages.is-visible .advantage-card__description {
+  /* Еще большая задержка для описания */
+  transition-delay: 0.45s;
+}
+
+/* ==========================================================================
+   3. СТИЛИ ДЛЯ MOBILE FIRST (< 768px)
+   ========================================================================== */
+
+/* --- HEADER --- */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 0;
+  z-index: 100;
+  color: var(--color-white);
+}
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+.header__logo span {
+  display: none;
+}
+.header__nav {
+  display: none;
+}
+.header__socials {
+  display: none;
+}
+.header__login-btn {
+  display: none;
+}
+.header__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header__city {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.header__burger-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.header__burger-btn span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: var(--color-white);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* --- МОБИЛЬНОЕ МЕНЮ И МОДАЛЬНЫЕ ОКНА --- */
+.header__burger-btn.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.header__burger-btn.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.header__burger-btn.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  background-color: #1a1a1a;
+  z-index: 999;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-white);
+  transform: translateX(120%);
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.mobile-menu.is-open {
+  transform: translateX(12%);
+}
+.mobile-menu__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.mobile-menu__close-btn {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 40px;
+  line-height: 1;
+  cursor: pointer;
+}
+.mobile-menu__nav {
+  flex-grow: 1;
+  
+}
+.mobile-menu__nav ul {
+  list-style: none;
+  
+}
+.mobile-menu__nav ul li{
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.mobile-menu__nav a {
+  display: block;
+  padding: 16px 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: inherit;
+  text-decoration: none;
+  
+}
+.mobile-menu__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.mobile-menu__main-action,
+.mobile-menu__login-btn {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mobile-menu__main-action {
+  background-color: var(--color-white);
+  color: #1a1a1a;
+}
+.mobile-menu__login-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+}
+.mobile-menu__socials {
+  display: flex;
+  gap: 16px;
+}
+.mobile-menu__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.modal__content {
+  background-color: var(--color-white);
+  border-radius: 24px;
+  padding: 40px 24px 24px;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.modal.is-active .modal__content {
+  transform: translateY(0);
+  z-index: 100;
+}
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.modal__content--city {
+  padding: 0;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+/* ==========================================================================
+   СТИЛИ ФОРМЫ РЕГИСТРАЦИИ
+   ========================================================================== */
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-field {
+  position: relative;
+}
+
+
+.form-field__input {
+  width: 100%;
+  height: 56px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 20px;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.form-field__input#reg-phone {
+  border: none;
+}
+.form-field__input#reg-phone:focus {
+  outline: none;
+  outline-color: transparent;
+  border: transparent;
+  box-shadow: 0; 
+}
+
+.form-field__label {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  font-size: 16px;
+  color: #888;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+/* --- Логика "плавающей" метки --- */
+/* Когда input в фокусе или когда в нем есть текст, метка "всплывает" */
+.form-field__input:focus + .form-field__label,
+.form-field__input:not(:placeholder-shown) + .form-field__label {
+  top: 8px;
+  left: 14px;
+  font-size: 20px;
+  color: #0052cc; /* Цвет метки в активном состоянии */
+  background-color: var(--color-white);
+  padding: 0 4px;
+}
+/* Для поля телефона, где label находится после обертки */
+.phone-input-wrapper:focus-within + .form-field__label,
+.form-field__input:not(:placeholder-shown) + .form-field__label {
+  top: 8px;
+  left: 14px;
+  font-size: 12px;
+  color: #0052cc;
+  background-color: var(--color-white);
+  padding: 0 4px;
+}
+
+.form-field__input:focus {
+  border-color: #0052cc;
+}
+
+/* --- Стили для поля телефона --- */
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Имитируем внешний вид поля ввода, чтобы рамка была общей */
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  transition: border-color 0.3s ease;
+}
+.phone-input-wrapper:focus-within {
+  border-color: #0052cc;
+}
+.phone-input-wrapper .form-field__input {
+  border: none;
+  height: 100%;
+  padding: 0;
+  flex-grow: 1; /* Чтобы поле ввода занимало все оставшееся место */
+  
+
+}
+.form-field__input#reg-phone, .form-field__input#reg-email {
+  margin-bottom: 0;
+}
+.form-field__input#reg-phone:focus {
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+}
+.phone-input__code {
+  font-size: 16px;
+  color: #333;
+}
+
+/* --- Состояния ошибки --- */
+.form-field.is-error .form-field__input,
+.form-field.is-error .phone-input-wrapper {
+  border-color: #d92d20; /* Красный цвет для ошибки */
+}
+.form-field.is-error .form-field__label {
+  color: #d92d20;
+}
+.form-field__error {
+  display: none; /* Скрываем по умолчанию */
+  font-size: 12px;
+  color: #d92d20;
+  margin-top: 4px;
+  padding-left: 16px;
+}
+.form-field.is-error .form-field__error {
+  display: block; /* Показываем при ошибке */
+}
+
+/* --- Кнопка отправки --- */
+.register-form__submit {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background-color 0.3s ease;
+}
+.register-form__submit:hover {
+  background-color: #555;
+}
+/* ==========================================================================
+   СТИЛИ МОДАЛЬНОГО ОКНА "УСПЕШНО"
+   ========================================================================== */
+
+.modal__content--success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 32px; /* Немного другие отступы для красоты */
+}
+
+.success-modal__icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+}
+
+.modal__content--success .modal__title {
+  margin-bottom: 12px;
+}
+
+.modal__subtitle {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #667085; /* Более светлый цвет для подзаголовка */
+  max-width: 320px;
+  margin-bottom: 32px;
+}
+
+.success-modal__close-btn {
+  /* Используем те же стили, что и у кнопки регистрации */
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.success-modal__close-btn:hover {
+  background-color: #555;
+}
+
+/* ==========================================================================
+   СТИЛИ МОДАЛЬНЫХ ОКОН (ОБНОВЛЕННЫЕ) - ИСПРАВЛЕННАЯ СТРУКТУРА
+   ========================================================================== */
+
+/* --- Мобильные стили для модалки промокода --- */
+#modal-promo .modal__close {
+  top: 10px;
+  right: 20px;
+}
+/* #modal-promo .modal__content {
+    padding: 20px 20px 85px 20px;
+} */
+
+.modal__title {
+  font-family: var(--second-family);
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #101828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #08304C;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.modal-form__field .modal-form__feedback {
+  position: static;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+/* --- Стили для окна "Успешно" --- */
+.modal__content--success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal__icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+}
+.modal__subtitle {
+  font-size: 16px;
+  color: #667085;
+  text-align: center;
+  margin: -16px 0 32px 0;
+  max-width: 300px;
+}
+
+/* --- Стили для формы промокода --- */
+.modal-form__field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* Стили для сообщения под инпутом */
+.modal-form__feedback {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  padding-left: 24px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 16px;
+  display: none; /* Скрыто по умолчанию */
+}
+
+/* Состояние УСПЕХ */
+.modal-form__field.is-success input {
+  border-color: #12b76a;
+}
+.modal-form__field.is-success .modal-form__feedback {
+  display: block;
+  color: #12b76a;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.6668 5.83325L7.50016 14.9999L3.3335 10.8333' stroke='%2312B76A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Состояние ОШИБКА */
+.modal-form__field.is-error input {
+  border-color: #f04438;
+}
+.modal-form__field.is-error .modal-form__feedback {
+  display: block;
+  color: #f04438;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 13.3333V10M10 6.66667H10.0083M18.3333 10C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39763 18.3333 1.66667 14.6024 1.66667 10C1.66667 5.39763 5.39763 1.66667 10 1.66667C14.6024 1.66667 18.3333 5.39763 18.3333 10Z' stroke='%23F04438' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.promo-input {
+  display: block;
+  position: relative;
+}
+
+/* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 768px) --- */
+@media (min-width: 768px) {
+  .modal-form {
+    gap: 16px;
+  }
+  .modal-form__field .modal-form__feedback {
+    position: absolute;
+    margin-top: 0;
+  }
+
+  .modal__title {
+    font-size: 54px;
+  }
+
+  /* ✅ ТЕПЕРЬ ЭТИ СТИЛИ СРАБОТАЮТ! */
+  .modal__content {
+    box-sizing: border-box;
+    width: auto;
+    max-width: 772px; /* Увеличиваем ширину на десктопе */
+    border-radius: 24px;
+    padding: 62px 100px; /* Увеличиваем отступы */
+    transform: scale(0.9);
+    transition: transform 0.4s, opacity 0.4s;
+  }
+  
+  .modal.is-active .modal__content {
+    transform: scale(1);
+  }
+
+  .modal__content--success .modal__title {
+    font-size: 54px;
+    margin-bottom: 26px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+}
+
+/* Стили для иконки в модалке успеха (оставляем как есть) */
+#modal-promo-success .modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: #D9D9D9;
+  margin-bottom: 35px;
+}
+
+/* ==========================================================================
+   СТИЛИ МОДАЛЬНОГО ОКНА ВЫБОРА ГОРОДА
+   ========================================================================== */
+
+/* --- Переопределяем базовые стили для .modal--right --- */
+.modal--right .modal__overlay {
+  /* На мобильных выравниваем по правому краю, а не по центру */
+  justify-content: flex-end;
+  padding: 0; /* Убираем отступы, чтобы панель прилегала к краю */
+}
+
+.modal--right .modal__content {
+  /* Задаем размеры и убираем скругления, чтобы панель была прямоугольной */
+  min-width: 320px;
+  max-width: 562px; /* Максимальная ширина панели */
+  width: 90%;
+  
+  height: 100%;
+  border-radius: 0;
+  
+  /* Убираем анимацию "зума", заменяя ее на "выезд" справа */
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  
+  /* Убираем внутренние отступы, так как у нас теперь своя структура */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal--right.is-active .modal__content {
+  transform: translateX(0);
+}
+
+/* --- Стили для шапки окна --- */
+.city-modal__header {
+  padding: 24px;
+  border-bottom: 1px solid #eaecf0;
+  /* "Приклеиваем" шапку к верху */
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.city-modal__title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* Переопределяем стили для заголовка и кнопки закрытия */
+.modal--right .modal__title {
+  font-size: 24px;
+  text-align: left;
+  margin: 0;
+}
+.modal--right .modal__close {
+  position: static; /* Убираем абсолютное позиционирование */
+  width: 32px;
+  height: 32px;
+  background: #f2f4f7;
+  border-radius: 50%;
+  color: #667085;
+  /* Рисуем крестик через псевдоэлементы для лучшего вида */
+  font-size: 0; 
+}
+.modal--right .modal__close::before,
+.modal--right .modal__close::after {
+  content: '';
+  position: absolute;
+  top: 22%;
+  right: 9%;
+  width: 25px;
+  height: 2px;
+  background-color: #667085;
+}
+.modal--right .modal__close::before { transform: rotate(45deg); }
+.modal--right .modal__close::after { transform: rotate(-45deg); }
+
+
+.modal--right .modal__subtitle {
+  font-size: 14px;
+  color: #667085;
+  text-align: left;
+  margin: 0 0 24px 0;
+}
+
+/* --- Стили для поля поиска --- */
+.city-modal__search-wrapper {
+  position: relative;
+}
+.city-modal__search-wrapper input {
+  width: 100%;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  padding: 0 12px 0 40px; /* Оставляем место для иконки */
+  font-size: 16px;
+  outline: none;
+}
+.city-modal__search-wrapper input:focus {
+  border-color: #536dff;
+  box-shadow: 0 0 0 3px rgba(83, 109, 255, 0.2);
+}
+.city-modal__search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* --- Стили для списка городов --- */
+.city-modal__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Заставляем список занимать все оставшееся место и прокручиваться */
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.city-modal__list li a {
+  display: block;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #344054;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.city-modal__list li a:hover {
+  background-color: #f8f9fa;
+}
+
+/* Скрываем элементы, которые не прошли фильтрацию */
+.city-modal__list li.is-hidden {
+  display: none;
+}
+
+
+
+/* --- HERO-БЛОК --- */
+.hero {
+  padding-top: 100px;
+  
+  overflow: hidden;
+  background: url("../assets/img/decor-left.png"),
+    url("../assets/img/decor-right.png"), var(--background-gradient);
+  background-position: -16% 170%, 110% 126%;
+  
+  background-repeat: no-repeat;
+  
+  color: var(--color-white);
+}
+.hero__inner {
+  position: relative;
+  padding-bottom: 223px;  
+  
+
+}
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero__staff {
+  display: none;
+}
+
+.hero__title span {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+.hero__subtitle {
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: left;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  margin-bottom: 20px;
+}
+/* --- HERO-БЛОК: СТИЛИ ФОРМЫ (ИСПРАВЛЕННАЯ ВЕРСИЯ) --- */
+
+.hero__form {
+  width: 100%;
+  max-width: 668px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* ШАГ 1: Делаем обертку (.form-group) контейнером для позиционирования */
+.form-group {
+  position: relative;
+}
+
+/* ШАГ 2: Позиционируем label абсолютно ВНУТРИ .form-group */
+.form-group__label {
+  position: absolute;
+  top: 16px; /* Отступ сверху */
+  left: 16px; /* Отступ слева */
+  font-size: 14px;
+  color: var(--secondary-text-color);
+  
+  /* ✅ ВАЖНО: Делаем label "прозрачным" для кликов,
+     чтобы при нажатии на него фокус попадал на input под ним */
+  pointer-events: none;
+  
+  /* Убираем лишний отступ, так как он больше не нужен */
+  margin-bottom: 0; 
+}
+
+/* ШАГ 3: Настраиваем input, чтобы освободить место для label */
+.form-group__input {
+  width: 100%;
+  /* ❌ Убираем фиксированную высоту, теперь ее будет определять padding */
+  /* height: 72px; */ 
+  
+  /* ✅ ИЗМЕНЕНИЕ: Добавляем отступы, чтобы текст не наезжал на label.
+     padding: СВЕРХУ СПРАВА СНИЗУ СЛЕВА; */
+  padding: 38px 16px 16px 16px;
+  
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-white);
+  color: #08304C;
+  font-size: 20px;
+  font-weight: 400;
+  box-sizing: border-box; /* Добавляем для предсказуемости размеров */
+}
+
+/* ШАГ 4: Корректируем положение ссылки "есть промокод" */
+.form-group__promo-link {
+  position: absolute;
+  right: 16px;
+  
+  /* ✅ ИЗМЕНЕНИЕ: Позиционируем не по центру, а чуть ниже,
+     чтобы ссылка была на одной линии с вводимым текстом */
+  top: 42px; 
+  transform: none; /* Убираем translateY, он больше не нужен */
+  
+  font-size: 14px;
+  color: #4a6dff;
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+
+.hero__submit-btn {
+  width: 100%;
+  height: 66px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.hero__disclaimer {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--secondary-text-color);
+  text-align: center;
+}
+.hero__sticker img {
+  max-width: 224px;
+  height: auto;
+}
+.hero__sticker--girl-helmet {
+  position: absolute;
+  z-index: 1;
+  will-change: transform;
+  top: 20px;
+  right: -40px;
+  width: 180px;
+}
+.hero__sticker--girl-orange {
+  position: absolute;
+  z-index: 1;
+  will-change: transform;
+  bottom: -3%;
+  left: -10%;
+  width: 257px;
+}
+.hero__sticker--bulb {
+  position: absolute;
+  z-index: 1;
+  will-change: transform;
+  top: 23%;
+  right: -19%;
+  width: 257px;
+}
+.hero__skeleton {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+.skeleton-box {
+  background-color: var(--skeleton-bg-color);
+  border-radius: 12px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+@keyframes pulse {
+  0% {
+    background-color: var(--skeleton-bg-color);
+  }
+  50% {
+    background-color: var(--skeleton-pulse-color);
+  }
+  100% {
+    background-color: var(--skeleton-bg-color);
+  }
+}
+.skeleton-box--staff {
+  display: none;
+}
+.skeleton-box--title {
+  width: 80%;
+  height: 160px;
+  border-radius: 16px;
+}
+.skeleton-box--subtitle {
+  width: 100%;
+  height: 70px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.skeleton-box--input,
+.skeleton-box--button {
+  width: 100%;
+  height: 56px;
+}
+.hero__arr-up {
+  display: none;
+}
+.hero__arr-down {
+    position: absolute;
+    right: 17%;
+    bottom: -28%;
+    z-index: 10;
+  }
+.hero__arr-down img {
+  position: relative;
+  transform: translateY(-40%);
+}
+.hero__decor-text {
+    width: 308px;
+    max-width: 307px;
+    font-family: 'KurochkaLapkoi';
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 102%;
+    letter-spacing: -2%;
+    color: #fff;
+    opacity: 0.7;
+    text-align: center;
+  } 
+  .text-down {
+    max-width: 250px;
+    position: absolute;
+    right: -104%;
+    bottom: -63%;
+    z-index: 10;
+    transform: rotate(3deg);
+
+  }
+
+
+/* --- ADVANTAGES-БЛОК --- */
+.advantages {
+  background-color: var(--color-white);
+  padding: 10px 0;
+  position: relative;
+}
+.advantages__skeleton {
+  display: none;
+} /* Скелетон больше не используется */
+.advantages__grid {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.advantage-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  height: 194px;
+  background-color: #333;
+  font-weight: 600;
+  line-height: 110%;
+  border-radius: 18px;
+  padding: 24px;
+  color: var(--color-white);
+}
+.advantage-card__title {
+  font-family: var(--second-family);
+  font-weight: 600;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.advantage-card__description {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 280px;
+}
+
+/* ==========================================================================
+   4. ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 768px)
+   ========================================================================== */
+@media (min-width: 320px) {
+  .hero__title {
+    font-family: 'Inter Tight';
+    font-size: 46px;
+    text-align: left;    
+    margin: 0;
+    margin-bottom: 16px;    
+    font-weight: 600;    
+    line-height: 1.1;
+    text-align: left;
+    letter-spacing: -0.03em;    
+    }
+    .hero__sticker--bulb {
+      display: none;
+    }
+    .hero__sticker--girl-orange {
+    position: absolute;
+    z-index: 1;
+    will-change: transform;
+    bottom: -8%;
+    left: -32%;
+    width: 257px;
+    }
+    .hero__arr-down {
+    position: absolute;
+    right: 24%;
+    bottom: -23%;
+    z-index: 10;
+    }
+  }
+
+  @media (min-width: 400px) {
+    .hero__title {
+    font-size: 80px;
+    }
+  }
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 0;
+  }
+  /* --- HEADER --- */
+  .header {
+    padding: 25px 0;
+  }
+  .header__logo span {
+    display: block;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .header__burger-btn {
+    display: none;
+  }
+  .header__nav {
+    display: flex;
+    align-items: center;
+  }
+  .header__socials {
+    display: flex;
+    align-items: center;
+  }
+  .header__login-btn {
+    display: flex;
+    align-items: center;
+  }
+  .header__nav-list {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+  }
+  .header__nav-list a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+  }
+  .header__nav-list a:hover {
+    opacity: 0.8;
+  }
+  .header__controls {
+    gap: 24px;
+  }
+  .header__socials {
+    gap: 8px;
+  }
+  .header__socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-black);
+  }
+  .header__login-btn {
+    height: 40px;
+    padding: 0 24px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--color-black);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--color-white);
+    cursor: pointer;
+  }
+
+  /* --- HERO-БЛОК --- */
+  .hero__inner {
+    padding: 64px 0 242px;
+    
+  }
+  .hero__skeleton,
+  .hero__content {
+    max-width: 1230px;
+    width: 100%;
+    padding: 0 30px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 64px;
+    
+  }
+  .hero__skeleton {
+    align-items: center;
+  }
+  .skeleton-box--staff {
+    display: block;
+    width: 320px;
+    height: 36px;
+    border-radius: 18px;
+    margin-bottom: 24px;
+  }
+  .skeleton-box--title {
+    width: 100%;
+    height: 90px;
+  }
+  .skeleton-box--subtitle {
+    height: 54px;
+  }
+  
+  .hero__staff {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .staff__avatars {
+    display: flex;
+  }
+  .staff__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
+    background-color: #ccc;
+    margin-left: -12px;
+    overflow: hidden;
+  }
+  .staff__avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .staff__avatar:first-child {
+    margin-left: 0;
+  }
+  .staff__avatar--more {
+    background-color: #4a6dff;
+    color: var(--color-white);
+    font-weight: 700;
+  }
+  .staff__text {
+    font-size: 20px;
+    line-height: 1.54;
+    letter-spacing: -0.01em;
+    color: var(--color-white);
+  }
+  .hero__content {
+    position: relative;
+  }
+  
+  .hero__arr-down {
+    position: absolute;
+    right: 17%;
+    bottom: -18%;
+    z-index: 10;
+  
+  }
+  
+  .text-up {
+    
+    position: absolute;
+    right: -450%;
+    bottom: -133%;
+    z-index: 10;
+    transform: rotate(8deg);
+
+  }
+  .text-down {
+    position: absolute;
+    right: -150%;
+    bottom: -63%;
+    z-index: 10;
+    transform: rotate(-3deg);
+
+  }
+  .hero__title {
+    margin: 0;
+    margin-bottom: 16px;    
+    font-weight: 600;
+    font-size: 80px;
+    line-height: 1.1;
+    text-align: left;
+    letter-spacing: -0.03em;
+  }
+  .hero__title br {
+    display: none;
+  }
+  .hero__subtitle {
+    font-size: 24px;    
+    max-width: 813px;
+    margin: 0 auto 36px;
+    text-align: center;  
+  }
+  .form-group__label {
+    text-align: left;
+  }
+  .hero__sticker--girl-helmet {
+    top: 15%;
+    right: 12%;
+    width: 300px;
+  }
+  .hero__sticker--girl-orange {
+    bottom: -6%;
+    left: -8%;
+    width: 40%;
+    height: auto;
+  }
+  .hero__sticker--bulb {
+    display: block;
+    position: absolute;
+    top: 4%;
+    right: -23%;
+    width: 40%;
+    height: auto;
+  }
+}
+  /* .hero.highlight-visible .hero__title span::before {
+    width: 504px;
+    height: 85px;
+    border-radius: 8px;
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%) rotate(-1.36deg) scaleX(1);
+  } */
+   /* ШАГ 1: Подготавливаем родительский SPAN */
+.hero__title span {
+  position: relative; /* Создаем контекст для позиционирования псевдоэлемента */
+  z-index: 1; /* Убедимся, что текст всегда НАД фоном */
+  /* Небольшой отступ, чтобы фон не прилипал к тексту */
+  padding: 0 0.1em; 
+}
+
+/* ШАГ 2: Задаем НАЧАЛЬНОЕ состояние для фона (до анимации) */
+.hero__title span::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1; /* Помещаем фон ПОД текст */
+  
+  /* ✅ РЕШЕНИЕ ПРОБЛЕМЫ АДАПТИВНОСТИ:
+     Используем относительные размеры. Фон будет всегда равен размеру своего родителя (span).
+     Добавляем немного "воздуха" по краям. */
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  
+  background-color: #324DE3; /* Цвет вашего фона */
+  border-radius: 8px;
+
+  /* ✅ РЕШЕНИЕ ПРОБЛЕМЫ АНИМАЦИИ:
+     1. Задаем начальное состояние: фон сжат по горизонтали (scaleX(0)).
+     2. Указываем, что свойство transform должно анимироваться плавно. */
+  transform-origin: left; /* Анимация будет идти от центра к краям */
+  transform: translate(-50%, -50%) rotate(-1.36deg) scaleX(0);
+  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1); /* Плавная анимация для transform */
+  transition-delay: 0.2s; /* Небольшая задержка перед началом анимации */
+}
+
+/* ШАГ 3: Задаем КОНЕЧНОЕ состояние (когда JS добавляет класс .highlight-visible) */
+.hero.highlight-visible .hero__title span::before {
+  /* Просто меняем scaleX на 1, чтобы фон "вырос" до полной ширины */
+  transform: translate(-50%, -50%) rotate(-1.36deg) scaleX(1);
+}
+
+
+
+  /* --- ADVANTAGES-БЛОК --- */
+  .advantages {
+    padding: 80px 0;
+  }
+  .advantages .container {
+    transform: translateY(0);
+  }
+  .advantages__grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .advantage-card {
+    flex: 1;
+    min-width: 400px;
+    max-width: 584px;
+    min-height: 303px;
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .advantage-card__title {
+
+    font-family: 'Inter Tight';
+    font-size: 54px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .advantage-card__description {
+    font-family: 'Inter Tight';
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.64);
+    max-width: 100%;
+
+  }
+  
+  .hero__sticker--bulb {
+    top: 4%;
+    right: -16%;
+    
+  }
+  .hero__sticker img {
+    max-width: 300px;
+  }
+
+
+/* ==========================================================================
+   5. СТИЛИ ДЛЯ БОЛЬШИХ ЭКРАНОВ (ОПЦИОНАЛЬНО >= 1200px)
+   ========================================================================== */
+@media (min-width: 1200px) {
+  .header__nav-list {
+    gap: 72px;
+  }
+  .hero__title {
+    font-size: 88px;
+  }
+  .hero.highlight-visible .hero__title span::before {
+    width: 504px;
+    height: 101px;
+    top: 60%;
+  }
+  .hero__sticker--girl-orange {  
+    bottom: -14%;
+    left: -10%;
+    
+  }
+  .hero__sticker--bulb {
+    display: block;
+    position: absolute;
+    top: 19%;
+    right: -19%;
+    
+    
+  }
+  .hero__sticker img {
+    max-width: 400px;
+  }
+  .hero__arr-up {
+    display: block;
+    position: absolute;
+    right: 17%;
+    bottom: 25%;
+    z-index: 10;
+  }
+  .hero__arr-down {
+    right: 15%;
+    bottom: -15%;
+  }  
+  
+}
+@media (min-width: 1400px) {
+  .hero__sticker img {
+    max-width: 542px;
+  }
+
+}
+
+/* ==========================================================================
+   СТИЛИ БЛОКА ШАГОВ (STEPS) - ИСПРАВЛЕННАЯ ВЕРСИЯ
+   ========================================================================== */
+
+.steps {
+  padding: 70px 0 0 0;
+  background: url('../assets/img/signatura.png'), #f8f9fa;
+  background-repeat: no-repeat;
+  background-size: 846px auto;
+  background-position: right bottom;
+}
+.steps__container {
+  width: 100%;
+  max-width: 1420px;
+}
+
+  .step-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 46px;
+  }
+  .step-card__title {
+    font-family: 'Inter Tight';
+    font-size: 34px;
+    font-weight: 600;
+    color: #2D2D2D;
+    margin-bottom: 70px;
+  }
+  .step-card__description {
+    font-family: 'Inter Tight';
+    font-size: 16px;
+    font-weight: 400;
+    color: #2D2D2D;
+    line-height: 1.5;
+  }
+  .step-card__number {
+    display: none;
+  }
+  
+  .step-card__img {
+    display: block;
+  }
+  .step-card__duration {
+    color: #2D2D2D;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 110%;
+    letter-spacing: -2%;
+    padding: 17px 19px;
+    border: 1px solid #8B8B8B;
+    border-radius: 49px;
+  }
+.steps__title {  
+  margin-bottom: 50px;
+  
+}
+.steps-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.step-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.step-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.step-card {
+  width: 100%;
+  background-color: var(--color-white);
+  border: 1px solid #eaecf0;
+  border-radius: 16px;
+  padding: 24px;
+  /* padding-bottom: 40px; */
+  box-shadow: 0 4px 8px rgba(16, 24, 40, 0.05);
+  position: relative;
+  z-index: 2;
+}
+.step-icon-wrapper {
+  display: none;
+}
+
+/* --- АНИМАЦИЯ ОБВОДКИ КАРТОЧКИ --- */
+.card-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+.card-border rect {
+  fill: none;
+  stroke: #536dff;
+  stroke-width: 2;
+  /* ✅ ИСПРАВЛЕНИЕ 1: Увеличиваем "магическое число".
+     Теперь его гарантированно хватит для обводки даже очень большой карточки. */
+  stroke-dasharray: 10000;
+  stroke-dashoffset: 10000;
+  transition: stroke-dashoffset 1.5s linear;
+  transition-delay: 0.3s;
+}
+.step-item.is-visible .card-border rect {
+  stroke-dashoffset: 0;
+}
+
+/* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
+@media (min-width: 992px) {
+  .step-card {
+    padding: 36px;
+    align-self: center;
+  }
+  .step-card__header {
+    margin-bottom: 64px;
+  }
+  
+  .steps__title {
+    
+  }
+  .step-card__description {
+    font-family: 'Inter Tight';
+    font-size: 20px;
+    font-weight: 700;
+    
+  }
+  .steps-timeline {
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 60px;
+  }
+  .step-card__number {
+    display: inline-block;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    color: #8B8B8B;
+    background: #F1F3F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-card__img {
+    display: none;
+  }
+  .step-item {
+    display: contents;
+  }
+  
+  
+  .step-icon-wrapper {
+    display: flex;
+    grid-column: 2 / 3;
+    position: relative;
+    justify-content: center;
+    /* ✅ ИСПРАВЛЕНИЕ 2: Убираем фиксированную высоту и центрирование.
+       Теперь этот блок будет растягиваться на всю высоту строки грида. */
+    /* height: 88px; - УБРАНО */
+    /* align-self: center; - УБРАНО */
+    align-self: stretch; /* Явно указываем растягиваться */
+  }
+
+  /* Расстановка элементов по гриду (остается без изменений) */
+  .step-item:nth-child(odd) > .step-card { grid-column: 1 / 2; }
+  .step-item:nth-child(even) > .step-card { grid-column: 3 / 4; }
+  .step-item:nth-child(1) > * { grid-row: 1; }
+  .step-item:nth-child(2) > * { grid-row: 2; }
+  .step-item:nth-child(3) > * { grid-row: 3; }
+  .step-item:nth-child(4) > * { grid-row: 4; }
+  .step-item:nth-child(5) > * { grid-row: 5; }
+  .step-item:nth-child(6) > * { grid-row: 6; }
+
+  /* Анимация иконок (остается без изменений) */
+  .step-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 0 6px #f8f9fa;
+    transition: background-color 0.5s ease;
+  }
+  .step-item.is-visible .step-icon {
+    background-color: #536dff;
+  }
+  .step-icon img {
+    width: 44px;
+    height: 44px;
+    filter: grayscale(1);
+    transition: filter 0.5s ease;
+  }
+  .step-item.is-visible .step-icon img {
+    filter: grayscale(0);
+  }
+
+  /* СТИЛИ ЛИНИИ */
+  .step-line {
+    position: absolute;
+    top: 88px; /* Линия по-прежнему начинается под иконкой */
+    width: 2px;
+    background-color: #d0d5dd;
+    height: 0;
+    transition: height 0.6s ease-out;
+    z-index: 1;
+  }
+  .step-item:last-child .step-line {
+    display: none;
+  }
+  
+  /* ✅ ИСПРАВЛЕНИЕ 3: Новая, динамическая формула для высоты линии */
+  .step-item.line-grows .step-line {
+    /* 100% (высота родителя, теперь равная высоте карточки)
+     - 88px (высота иконки)
+     + 40px (промежуток между строками) */
+    height: calc(100% - 88px + 40px);
+  }
+  
+  .step-item:last-child > .step-icon-wrapper {
+    grid-row: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .steps__title {
+    
+    margin-bottom: 127px;
+  }
+}
+
+/* ==========================================================================
+   СТИЛИ ФИНАЛЬНОГО CTA-БЛОКА
+   ========================================================================== */
+
+/* 1. Родительский блок-распорка */
+.final-cta {
+  /* Высота больше высоты экрана, чтобы было куда скроллить */
+  height: 250vh;
+  position: relative;
+  background-color: #fff; /* Фон "до" анимации */
+}
+
+/* 2. Анимированный круг */
+.expanding-circle {
+  position: fixed; /* Фиксируем относительно окна браузера */
+  top: 50%;
+  left: 50%;
+  width: 100px; /* Начальный размер не важен, т.к. управляем через scale */
+  height: 100px;
+  background-color: #EBEDEF; /* Темный цвет для заливки */
+  border-radius: 50%;
+  /* Изначально круг сжат в точку и идеально по центру */
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 1; /* Находится под контентом, но над остальной страницей */
+}
+
+/* 3. "Липкий" контейнер для контента */
+.final-cta__sticky-content {
+  position: sticky;
+  /* background: #fff; */
+  top: 0;
+  
+  
+  height: 80vh; /* Занимает всю высоту экрана */
+  width: calc(100%-30px);
+  z-index: 2; /* Контент всегда выше круга */
+
+  /* Центрируем текстовый блок внутри */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  border-radius: 36px;
+  
+}
+
+/* 4. Контент внутри */
+.final-cta__text-wrapper {
+  /* Изначально контент невидим, появится по мере анимации */
+  opacity: 0;
+  /* Плавное появление */
+  transition: opacity 0.3s ease-in-out;
+  max-width: 1175px;
+}
+
+.final-cta__title {
+  font-family: 'Inter Tight';
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1;
+  color: #2D2D2D; /* Текст сразу делаем светлым для темного фона */
+  margin: 0 0 50px 0;
+  text-align: left;
+}
+
+.final-cta__title .highlight {
+  color: #fff;
+  background-color: #536dff;
+  border-radius: 12px;
+  padding: 4px 12px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.final-cta__button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+/* Стили для кнопки берем из предыдущего блока для консистентности */
+.final-cta .cta-button {
+  background-color: #333333;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  transform-origin: center; /* Важно для корректной анимации */
+  
+}
+
+.final-cta .cta-button:hover {
+  background-color: #333333a1;
+}
+
+.final-cta__disclaimer {
+  font-size: 12px;
+  color: #B3B3B3; /* Светлый цвет для дисклеймера */
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 5. Анимация кнопки (адаптировано из CodePen) */
+@keyframes wobble {
+  0% {
+    transform: none;
+  }
+  15% {
+    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+  }
+  30% {
+    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+  }
+  45% {
+    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+  }
+  60% {
+    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+  }
+  75% {
+    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+/* Класс, который запускает анимацию */
+.final-cta .cta-button.is-animating {
+  animation: wobble 1s linear infinite;
+}
+
+/* --- АДАПТИВ >= 768px --- */
+@media (min-width: 768px) {
+  .final-cta__title {
+    font-size: 48px;
+    text-align: center;
+  }
+}
+@media (min-width: 1200px) {
+  .final-cta__title {
+    padding-top: 40px;    
+    font-family: 'Inter Tight';
+    font-weight: 600;
+    font-size: 74px;
+    line-height: 1.1;    
+    margin-bottom: 55px;
+  }
+  .final-cta .cta-button {
+  display: block;
+  width: 100%;
+  max-width: 668px;
+}
+}
+/* ==========================================================================
+   СТИЛИ БЛОКА АВТОРОВ (AUTHORS)
+   ========================================================================== */
+
+/* --- Общие стили блока --- */
+.authors {
+  
+  padding: 155px 0;
+  
+}
+
+.authors__title {  
+  margin-bottom: 51px;
+  position: relative;
+  z-index: 100;
+}
+
+.authors-slider-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.accordion-item__title {
+  font-size: 34px;
+  font-weight: 600;
+
+}
+
+/* --- Стилизация Swiper --- */
+.authors-slider {
+  /* ВАЖНО: делаем видимым overflow, чтобы были видны соседние слайды */
+  overflow: visible;
+}
+
+.authors-slider .swiper-slide {
+  height: auto;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+
+  /* Анимация эффектов */
+  transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+
+  /* По умолчанию слайды уменьшены и размыты */
+  transform: scale(0.9);
+  filter: blur(4px);
+  opacity: 0.7;
+}
+
+/* Активный слайд - в фокусе, без эффектов */
+.authors-slider .swiper-slide-active {
+  transform: scale(1);
+  filter: blur(0);
+  opacity: 1;
+  z-index: 10;
+}
+
+/* --- Стилизация карточки автора --- */
+.author-card {
+  /* ... здесь будут стили для карточки автора: аватар, имя, теги и т.д. ... */
+  /* Для примера, можно добавить display: flex; flex-direction: column; gap: 16px; */
+}
+.author-card__left {
+  display: flex;
+  gap: 16px;
+  
+}
+
+.author-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  
+}
+.author-card__stats {
+  display: flex;
+  gap: 25px;
+
+}
+.author-card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.author-card__name {
+  color: #2D2D2D;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.author-card__specialty {
+  color: #B3B3B3;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+
+}
+.author-card__stat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.author-card__stat-item {
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #2D2D2D;
+}
+.author-card__perks {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 26px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #538AFF;
+}
+.author-card__perks li:not(:last-child) {
+  margin-bottom: 16px;
+}
+.author-card__perks li {
+  display: flex;
+  gap: 10px;
+}
+.author-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tag {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #2D2D2D;
+  display: inline-block;
+  padding: 12px 20px;
+  border: 1px solid #D9D9D9;
+  border-radius: 100px;
+}
+/* --- Стилизация аккордеона --- */
+.works-accordion {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accordion-item {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #eaecf0;
+}
+
+.accordion-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.accordion-item__arrow {
+  width: 12px;
+  height: 12px;
+  border-left: 2px solid #344054;
+  border-bottom: 2px solid #344054;
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+.accordion-item__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+  padding: 0 16px;
+}
+
+.work-details {
+  border-top: 1px solid #eaecf0;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* Стили для открытого состояния аккордеона */
+.accordion-item.is-open .accordion-item__arrow {
+  transform: rotate(135deg);
+}
+.accordion-item.is-open .accordion-item__content {
+  max-height: 1000px; /* Достаточно большое значение */
+  transition: max-height 0.5s ease-in;
+}
+
+/* --- Навигация и Пагинация --- */
+.swiper-button-prev,
+.swiper-button-next {
+  /* На мобильных прячем стрелки, т.к. есть свайп */
+  display: none;
+}
+
+.swiper-pagination {
+  position: static; /* На мобильных пагинация под слайдером */
+  margin-top: 32px;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+/* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
+@media (min-width: 992px) {
+  .authors__title {    
+    margin-bottom: 76px;
+  }
+
+   /* Показываем стрелки навигации */
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: flex;
+    /* Позиционирование относительно .authors-slider-wrapper */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    background-color: #538AFF;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: 20; /* Стрелки должны быть выше слайдов */
+  }
+
+  
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .swiper-button-prev {
+    left: calc(50% - 400px);
+  }
+  .swiper-button-next {
+    right: calc(50% - 400px);
+  }
+  
+  .authors-slider .swiper-slide {
+  width: calc(100% / 3.5); 
+  height: auto;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+
+  /* Добавляем 'filter' в список анимируемых свойств */
+  transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+  
+  /* Начальное состояние для всех слайдов (включая неактивные) */
+  opacity: 0.7;
+  filter: blur(4px);
+  transform: scale(0.9);
+}
+
+/* ✅ ИСПРАВЛЕНИЕ: Сбрасываем эффекты для активного слайда и увеличиваем его */
+.authors-slider .swiper-slide-active {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1.05); /* Эффект "наезда" */
+  z-index: 10;
+}
+
+  /* Активный слайд "выезжает" вперед еще сильнее */
+  .authors-slider .swiper-slide-active {
+    transform: scale(1.05); /* Немного увеличиваем масштаб */
+  }
+
+  /* Пагинация остается внизу, но можно увеличить отступ */
+  .swiper-pagination {
+    margin-top: 60px;
+  }
+}
+/* ==========================================================================
+   СТИЛИ БЛОКА ПРЕИМУЩЕСТВ (REASONS)
+   ========================================================================== */
+
+.reasons {
+  
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+}
+.reasons__inner {
+  background-color: #161616;
+  padding: 60px 0;
+  border-radius: 36px;
+}
+
+.reasons__title {
+  font-family: var(--second-family);
+  font-size: 28px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reasons-slider-wrapper {
+  position: relative;
+}
+
+/* --- Стилизация Swiper --- */
+.reasons-slider {
+  /* ВАЖНО: задаем высоту для вертикального слайдера */
+  /* height: 550px;
+  width: 100%; */
+  /* Включаем 3D-перспективу для родителя */
+  height: 75vh;
+  
+  perspective: 1200px;
+}
+
+.reasons-slider .swiper-wrapper {
+  transform: translateX(0) !important;
+  /* Включаем 3D-пространство для самих слайдов */
+  transform-style: preserve-3d;  
+  /* Задаем обертке явную ширину, чтобы Grid мог ее отцентрировать */
+    /* width: 1166px; */
+    /* Защита от вылезания на экранах от 992px до 1166px */
+    /* max-width: 90%;  */
+}
+
+.reasons-slider .swiper-slide {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  /* Для плавной анимации */
+  transition-property: transform, opacity;
+  /* Важно для корректного наложения в 3D */
+  transform-style: preserve-3d;
+  backface-visibility: hidden; /* Скрываем "обратную сторону" карточки при повороте */
+}
+
+/* Стили для карточек внутри слайда */
+.reason-card,
+.reason-image {
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.reason-card {
+  background-color: #fff;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.reason-card__number {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f4f7;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 500;
+  color: #667085;
+  margin-bottom: 24px;
+}
+
+.reason-card__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #101828;
+  margin-bottom: 16px;
+}
+
+.reason-card__description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #667085;
+}
+
+.reason-image {
+  background-color: #444; /* Фоновый цвет на случай, если картинка не загрузится */
+  height: 250px;
+}
+
+.reason-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
+@media (min-width: 992px) {
+  .reasons {
+    padding: 100px 0;
+  }
+  .reasons__inner {
+    padding: 164px 0 232px 0;
+
+  }
+
+  .reasons__title {
+    max-width: 1373px;
+    font-size: 74px;
+    font-weight: 600;
+    margin-bottom: 112px;
+  }
+
+  .reasons-slider {
+    height: 80vh;
+    
+    /* height: 90vh;
+    width: 100vw;
+    overflow-x: hidden; */
+  }
+  .reasons-slider-wrapper {
+    position: relative;
+    /* width: 100vw; 
+    left: 50%;    
+    transform: translateX(-50%);  */
+  }
+  .reasons-slider .swiper-wrapper {
+    /* Убираем отсюда фиксированную ширину, она больше не нужна */
+    /* width: auto;
+    max-width: none; */
+    transform-style: preserve-3d;
+    display: flex; /* Используем Flexbox */
+    justify-content: center; /* Центрируем слайды по горизонтали */
+    align-items: center;
+  }
+  
+  /* Переключаем на двухколоночный макет */
+  
+  .reasons-slider .swiper-slide {
+    align-items: center;
+    /* Возвращаем ширину слайда, как она была изначально */
+    width: 90%;
+    
+
+    max-width: 1166px;
+    gap: 10px;
+  }
+  .reason-card,
+.reason-image {
+  border-radius: 36px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.reason-card {
+  background-color: #fff;
+  padding: 36px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reason-card__number {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f4f7;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 500;
+  color: #667085;
+  margin-bottom: 24px;
+}
+
+.reason-card__title {
+  font-size: 42px;
+  font-weight: 600;
+  
+  margin-bottom: 16px;
+}
+
+.reason-card__description {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #667085;
+}
+
+.reason-image {
+  background-color: #444; /* Фоновый цвет на случай, если картинка не загрузится */
+  height: 250px;
+}
+
+.reason-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+  .reason-card,
+  .reason-image {
+    flex: 1; /* Обе карточки занимают по 50% ширины */
+    height: 100%;
+    
+  }
+  .reason-card {
+    flex: 1 1 50%;
+  }
+  .reason-image {
+    flex: 1 1 50%;
+  }
+}
+/* ==========================================================================
+   СТИЛИ БЛОКА КАЛЬКУЛЯТОРА
+   ========================================================================== */
+.calculator {
+ 
+  padding: 60px 0 0 0;
+  position: relative;
+  z-index: 100;
+}
+.calculator__inner {
+  background: #fff;
+  padding: 100px 0;
+  border-radius: 36px;
+}
+.calculator__title {  
+  margin-bottom: 32px;
+  
+}
+.calculator-form {
+  max-width: 888px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 24px;
+ 
+  
+}
+
+/* --- Прогресс-бар --- */
+.progress-bar {
+  margin-bottom: 32px;
+}
+.progress-bar__line {
+  height: 8px;
+  background-color: #e4e7ec;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-bar__fill {
+  width: 33%; /* Начальное значение */
+  height: 100%;
+  background: linear-gradient(90deg, #536dff 0%, #7c90ff 100%);
+  border-radius: 4px;
+  transition: width 0.4s ease-out;
+}
+.progress-bar__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #536DFF;
+  margin-top: 10px;
+  margin-bottom: 62px;
+}
+
+/* --- Шаги формы --- */
+.form-step {
+  border: none;
+  padding: 0;
+  margin: 0;
+  animation: fadeIn 0.5s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- Поля формы --- */
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+.form-field label {
+  font-size: 20px;
+  color: #667085;
+  margin-bottom: 8px;
+}
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="tel"],
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 24px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  /* font-size: 16px; */
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 30px;
+}
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+  outline: none;
+  border-color: #536dff;
+  box-shadow: 0 0 0 3px rgba(83, 109, 255, 0.2);
+}
+.form-field input::placeholder {
+  color: #333;
+}
+.form-field label {
+  position: absolute;
+  top: -13px;
+  left: 14px;
+  display: inline-block;
+  background: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  color: #B3B3B3;
+}
+.form-field select#work-type {
+  padding: 24px;
+}
+.form-field input#subject {
+  padding: 24px;
+}
+
+.form-field input#deadline {
+  padding: 24px;
+
+}
+.form-column .form-field label {
+  position: static;
+  display: block;
+} 
+/* --- Кастомный Range Slider --- */
+.range-slider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.range-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e4e7ec;
+  border-radius: 3px;
+  outline: none;
+}
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #536dff;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+.range-slider__value {
+  width: 30%;
+  padding: 8px 16px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+  min-width: 80px;
+}
+
+/* --- Кастомный File Input --- */
+.form-field__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  grid-gap: 12px;
+  align-items: stretch;
+}
+.form-field__wrapper > .form-field {
+  display: flex; /* Превращаем ячейку во flex-контейнер */
+  flex-direction: column; /* Располагаем элементы внутри (label и input) вертикально */
+}
+textarea#requirements,
+.file-dropzone {
+  flex-grow: 1; /* Главное свойство! Заставляет элемент занять всё свободное место в flex-контейнере */
+  height: 100%; /* Оставляем для совместимости, но flex-grow важнее */
+}
+textarea#requirements {
+  resize: none;
+  
+  margin-bottom: 0;
+  overflow-y: auto;
+}
+.file-dropzone {
+  /* display: block;
+  height: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px dashed #d0d5dd;
+  border-radius: 12px;
+  padding: 24px;
+ 
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  
+  
+}
+.file-dropzone.is-dragover {
+  border-color: #536dff;
+  background-color: #f0f2ff;
+}
+.file-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.file-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+.file-list-item button { /* Кнопка удаления */
+  background: none; border: none; font-size: 20px; cursor: pointer; color: #98a2b3;
+}
+
+/* --- Навигация --- */
+.form-navigation {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+}
+.btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-primary {
+  background-color: #344054;
+  color: #fff;
+}
+.btn-primary:hover { background-color: #1d2939; }
+.btn-secondary {
+  background-color: #e4e7ec;
+  color: #344054;
+}
+.btn-secondary:hover { background-color: #d0d5dd; }
+/* .form-step {
+  display: flex;
+  flex-direction: column;
+} */
+.promo-link {
+  display: flex;
+  justify-content: flex-end;
+}
+.form-step[data-step="1"]~.form-disclaimer {
+  color: transparent;
+}
+.form-step[data-step="2"]~.form-disclaimer {
+  text-align: center;
+  font-size: 12px;
+  color: #98a2b3;
+  margin-top: 24px;
+}
+
+/* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 768px) --- */
+@media (min-width: 768px) {
+  .calculator__title {    
+    font-size: 48px;
+    margin-bottom: 60px;
+  }
+  .form-grid {
+    flex-direction: row;
+    gap: 50px;
+  }
+  .form-column {
+    flex: 1;
+  }
+  .form-navigation {
+    justify-content: flex-end;
+  }
+  .btn {
+    display: block;
+    width: 100%;
+    min-width: 120px;
+  }
+}
+
+/* ==========================================================================
+   СТИЛИ БЛОКА УСЛУГ (SERVICES)
+   ========================================================================== */
+
+.services {
+  position: relative;
+    padding: 10px 0 0 0;
+    color: #fff;
+    z-index: 100;
+    margin-bottom: 16px;
+    
+}
+.services__inner {
+  padding: 166px 144px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #4d4dff 0%, #15a7f5 100%);
+  border-radius: 36px;
+
+}
+
+.services__title {
+    color: #fff;
+    margin-bottom: 32px;
+}
+
+/* --- Стили переключателя --- */
+.services-toggle {
+    position: relative;
+    display: flex;
+    max-width: 400px;
+    margin: 0 auto 40px;
+    background-color: #fff;
+    border-radius: 100px;
+    padding: 2px;
+}
+
+.toggle-glider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.toggle-button {
+    flex: 1;
+    padding: 24px;
+    background: #fff;
+    border: none;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s ease;
+}
+
+.toggle-button.is-active {
+  background: #333;
+    color: #fff;
+}
+
+/* --- Стили контейнеров с контентом --- */
+.services-content-wrapper {
+    position: relative;
+}
+
+.services-content {
+    /* Начальное состояние для анимации */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    /* Чтобы неактивный блок не мешал */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.services-content.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative; /* Возвращаем в поток документа */
+    pointer-events: auto;
+}
+
+/* --- Стили для сетки с иконками (Типы работ) --- */
+#view-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки на мобильных */
+    gap: 16px;
+}
+
+.service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+}
+
+.service-item__icon {
+    width: 152px;
+    aspect-ratio: 1.05 / 1; /* Делает блок квадратным */
+    background-color: rgba(255, 255, 255, 0.32);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.service-item__name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* --- Стили для списков (По предметам) --- */
+.subject-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.subject-category__title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.subject-list {
+    list-style: none;
+    padding: 0;
+}
+.subject-list li {
+    padding: 8px 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 768px) --- */
+@media (min-width: 768px) {
+    .services__title {
+        font-size: 40px;
+    }
+    #view-types {
+        grid-template-columns: repeat(4, 1fr); /* 4 колонки на планшетах */
+        gap: 24px;
+    }
+    .subject-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 колонки для категорий */
+        gap: 40px 60px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #view-types {
+        grid-template-columns: repeat(6, 1fr); /* 6 колонок на десктопах */
+    }
+}
+/* ==========================================================================
+   СТИЛИ FOOTER
+   ========================================================================== */
+
+.footer {
+  position: relative;
+  z-index: 100;
+    
+    
+}
+.footer__inner {
+  background-color: #1F1F1F;
+    color: #fff;
+    padding: 0;
+    font-size: 14px;
+    
+
+}
+
+
+/* --- Верхняя часть --- */
+.footer__breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #8A8A8A;
+    margin-bottom: 24px;
+}
+.footer__breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+}
+.footer__title {
+    font-family: var(--second-family);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 24px;
+}
+.footer__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+.footer__phone,
+.footer__email {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+.footer__socials {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.footer__socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #333;
+}
+.footer__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.footer-btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 24px;
+    border: 1px solid #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.footer-btn--primary {
+    background-color: #fff;
+    color: #1D1D1D;
+}
+.footer-btn--secondary {
+    background-color: transparent;
+    color: #fff;
+}
+.footer-btn:hover {
+    opacity: 0.8;
+}
+
+/* --- Средняя часть --- */
+.footer__middle {
+    margin: 48px 0;
+    padding: 32px 0;
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+}
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.footer__nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.footer__nav-list a {
+    color: #D0D0D0;
+    text-decoration: none;
+}
+.footer__nav-list a:hover {
+    color: #fff;
+}
+.footer__payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+.footer__payment-methods img {
+    height: 24px;
+}
+.footer__legal-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.footer__legal-links a {
+    color: #8A8A8A;
+    text-decoration: none;
+}
+.footer__legal-links a:hover {
+    color: #D0D0D0;
+}
+
+/* --- Нижняя часть --- */
+.footer__copyright {
+    color: #8A8A8A;
+    font-size: 12px;
+}
+
+/* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
+@media (min-width: 992px) {
+    
+    .footer__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .footer__main {
+        max-width: 60%;
+    }
+    .footer__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 24px;
+    }
+    .footer__socials {
+        margin-bottom: 0;
+    }
+    .footer__buttons {
+        flex-direction: row;
+        gap: 16px;
+    }
+    .footer-btn {
+        width: auto;
+        padding: 0 24px;
+    }
+    .footer__middle {
+        display: flex;
+        justify-content: space-between;
+    }
+    .footer__nav {
+        flex-direction: row;
+        gap: 80px;
+        margin-bottom: 0;
+    }
+    .footer__legal {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+
+
+/* ==========================================================================
+   СТИЛИ PROMO BANNER
+   ========================================================================== */
+
+.promo-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2D2D2D;
+    color: #fff;
+    z-index: 5000;
+    padding: 16px 0;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+    
+    /* Анимация появления/исчезновения */
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.promo-banner.is-visible {
+    transform: translateY(0);
+    position: relative;
+}
+.promo-banner__img {
+  position: absolute;
+  z-index: 1000;
+  right: 0;
+  bottom: 0;
+}
+
+.promo-banner__container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    padding-right: 40px; /* Место для крестика */
+}
+
+.promo-banner__text {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+.promo-banner__text span {
+    color: #908DFF; /* Фиолетовый акцент */
+    text-decoration: underline;
+}
+
+.promo-banner__btn {
+    flex-shrink: 0;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #fff;
+    color: #1D1D;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+}.promo-banner__close {
+position: absolute;
+top: 50%;
+right: 15px;
+transform: translateY(-50%);
+width: 24px;
+height: 24px;
+background: none;
+border: none;
+color: #8A8A8A;
+font-size: 24px;
+line-height: 1;
+cursor: pointer;
+}
+.promo-banner__image {
+display: none;  
+}
+/*/__ --- ДЕСКТОПНЫЕ СТИЛИ PROMO BANNER (АДАПТИВ >= 992px) --- /*/
+@media (min-width: 992px) {
+.promo-banner {
+padding: 24px 0;
+}
+.promo-banner__container {
+padding-right: 24px; 
+max-width: 1200px; 
+}
+.promo-banner__text {
+font-size: 18px;
+}
+.promo-banner__image {
+display: block;
+position: absolute;
+right: 0;
+bottom: 0px;
+}
+.promo-banner__image img {
+height: 120px;
+}
+}
+
+
+
+
+
