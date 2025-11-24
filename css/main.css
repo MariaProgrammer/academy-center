@@ -3246,9 +3246,10 @@ textarea#requirements {
 
 /* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
 @media (min-width: 992px) {
+ 
   .footer__inner {
   border-radius: 36px;
-  padding: 66px 94px;
+  padding: 66px 94px 66px 134px;
   background-color: #1f1f1f;
   color: #fff;  
   font-size: 12px;
@@ -3339,6 +3340,7 @@ textarea#requirements {
   left: 0;
   width: 100%;
   background-color: #2d2d2d;
+  border-radius: 36px;
   color: #fff;
   z-index: 5000;
   padding: 16px 0;
@@ -3355,45 +3357,47 @@ textarea#requirements {
 .promo-banner__img {
   position: absolute;
   z-index: 900;
-  right: 0;
+  right: -60px;
   bottom: 0;
 }
 
 .promo-banner__container {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 16px;
   position: relative;
-  padding-right: 40px; /* Место для крестика */
+  padding: 45px 95px;
 }
 
 .promo-banner__text {
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
-  flex-grow: 1;
+  
 }
 .promo-banner__text span {
-  color: #908dff; /* Фиолетовый акцент */
-  text-decoration: underline;
+  display: inline-block;
+ background: var(--background-gradient);
+ transform: rotate(-2deg);
+ border-radius: 6px;
 }
 
 .promo-banner__btn {
-  flex-shrink: 0;
-  height: 40px;
-  padding: 0 20px;
-  border-radius: 20px;
+  flex-shrink: 0; 
+  padding: 22px 50px;
+  border-radius: 100px;
   border: none;
   background-color: #fff;
-  color: #1d1d;
-  font-size: 14px;
+  color: #333;
+  font-size: 20px;
   font-weight: 600;
   cursor: pointer;
 }
 .promo-banner__close {
   position: absolute;
-  top: -45%;
-  right: 15px;
+  top: -35px;
+  right: 36px;
   transform: translateY(-50%);
   width: 24px;
   height: 24px;
@@ -3411,15 +3415,15 @@ textarea#requirements {
 }
 /*/__ --- ДЕСКТОПНЫЕ СТИЛИ PROMO BANNER (АДАПТИВ >= 992px) --- /*/
 @media (min-width: 992px) {
-  .promo-banner {
-    padding: 24px 0;
-  }
+  
   .promo-banner__container {
     padding-right: 24px;
-    max-width: 1200px;
+    /* max-width: 1200px; */
   }
   .promo-banner__text {
-    font-size: 18px;
+    font-size: 35px;
+    line-height: 1.1;
+    font-weight: 600;
   }
   .promo-banner__image {
     display: block;
