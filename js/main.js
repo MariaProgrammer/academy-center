@@ -816,48 +816,75 @@ if (form) { // ✅ ИЗМЕНЕНО: Проверка на `form` теперь �
             fieldWrapper.classList.remove('is-success', 'is-error');
         });
     }
-    // --- 13. ЛОГИКА МОДАЛЬНОГО ОКНА ВЫБОРА ГОРОДА ---
+    // --- ЛОГИКА ДЛЯ МОДАЛЬНОГО ОКНА ВЫБОРА ГОРОДА ---
+
     const cityModal = document.getElementById('modal-city');
-    if (cityModal) {
-        const searchInput = document.getElementById('city-search-input');
-        const cityList = document.getElementById('city-list');
-        const cityItems = cityList.querySelectorAll('li');
-        const cityButton = document.querySelector('.header__city span'); // Элемент, где отображается город
+    if (!cityModal) return; // Если окна на странице нет, ничего не делаем
 
-        // Функция поиска
-        const filterCities = () => {
-            const query = searchInput.value.toLowerCase().trim();
+    const cityModalContent = cityModal.querySelector('.modal__content');
+    const citySearchInput = document.getElementById('city-search-input');
+    const cityList = document.getElementById('city-list');
+    const cityListItems = cityList.querySelectorAll('li');
+    // Предполагаем, что в шапке есть элемент с таким классом для названия города
+    // Если класс другой, исправьте селектор
+    const headerCityName = document.querySelector('.header__city-name'); 
 
-            cityItems.forEach(item => {
-                const cityName = item.textContent.toLowerCase();
-                if (cityName.includes(query)) {
+    // --- 1. ПРЕДОТВРАЩАЕМ ЗАКРЫТИЕ ОКНА ПРИ КЛИКЕ ВНУТРИ ---
+    if (cityModalContent) {
+        cityModalContent.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    }
+
+    // --- 2. ЛОГИКА ПОИСКА (ФИЛЬТРАЦИИ) ГОРОДОВ ---
+    if (citySearchInput && cityListItems.length > 0) {
+        citySearchInput.addEventListener('input', () => {
+            const searchTerm = citySearchInput.value.toLowerCase().trim();
+
+            cityListItems.forEach(item => {
+                const cityText = item.textContent.toLowerCase();
+                if (cityText.includes(searchTerm)) {
                     item.classList.remove('is-hidden');
                 } else {
                     item.classList.add('is-hidden');
                 }
             });
-        };
+        });
+    }
 
-        // Вешаем обработчик на ввод в поле поиска
-        searchInput.addEventListener('input', filterCities);
-
-        // Функция выбора города
-        cityList.addEventListener('click', (e) => {
-            // Проверяем, что клик был по ссылке внутри списка
-            if (e.target.tagName === 'A') {
-                const selectedCity = e.target.textContent;
-                
-                // Обновляем текст на кнопке в шапке
-                if (cityButton) {
-                    cityButton.textContent = selectedCity;
-                }
-                
-                // Логика закрытия окна уже встроена в HTML через data-modal-close,
-                // поэтому дополнительно ничего делать не нужно.
+    // --- 3. ОБНОВЛЕНИЕ ГОРОДА В ШАПКЕ ПРИ ВЫБОРЕ ИЗ СПИСКА ---
+    if (cityList && headerCityName) {
+        cityList.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                event.preventDefault();
+                const chosenCity = event.target.textContent;
+                headerCityName.textContent = chosenCity;
             }
         });
     }
-    
+
+    // --- 4. ОБНОВЛЕНИЕ ГОРОДА ПО НАЖАТИЮ ENTER В ПОЛЕ ВВОДА (НОВЫЙ БЛОК) ---
+    if (citySearchInput && headerCityName) {
+        citySearchInput.addEventListener('keydown', (event) => {
+            // Проверяем, что нажата именно клавиша Enter
+            if (event.key === 'Enter') {
+                // Предотвращаем стандартное поведение (например, отправку формы)
+                event.preventDefault();
+
+                // Получаем значение из поля ввода и убираем лишние пробелы
+                const newCityName = citySearchInput.value.trim();
+
+                // Если поле не пустое...
+                if (newCityName) {
+                    // ...обновляем название города в шапке
+                    headerCityName.textContent = newCityName;
+
+                    // ...и закрываем модальное окно, убирая активный класс
+                    cityModal.classList.remove('is-active');
+                }
+            }
+        });
+    }
     // --- 7. ЛОГИКА ПЕРЕКЛЮЧАТЕЛЯ УСЛУГ (SERVICES TOGGLE) ---
     const toggleContainer = document.querySelector('.services-toggle');
 
