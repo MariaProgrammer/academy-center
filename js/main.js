@@ -514,7 +514,7 @@ accordionItems.forEach(item => {
         // --- ШАГ 2: КОНФИГУРАЦИЯ SWIPER ---
         const reasonsSwiper = new Swiper(reasonsSliderElement, {
             centeredSlides: true,
-            slidesPerView: 1,
+            slidesPerView: 'auto',
             direction: 'vertical',
             speed: 800,
             grabCursor: true,
@@ -896,11 +896,15 @@ if (form) { // ✅ ИЗМЕНЕНО: Проверка на `form` теперь �
 const promoBanner = document.querySelector('.promo-banner');
 
 
+
 if (promoBanner) {
     const closeBannerBtn = promoBanner.querySelector('.promo-banner__close');
+    const closeBannerImg = promoBanner.querySelector('.promo-banner__img ');
 
     closeBannerBtn.addEventListener('click', () => {
         promoBanner.classList.remove('is-visible');
+        closeBannerImg.style.display = 'none';
+        closeBannerBtn.style.display = 'none';
     });
 }
   
