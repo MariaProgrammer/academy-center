@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateOnScroll();
     }
 
-    // --- 8. АНИМАЦИЯ ФИНАЛЬНОГО CTA-БЛОКА ---
+    // --- 8. АНИМАЦИЯ ФИНАЛЬНОГО CTA-БЛОКА (НОВАЯ ВЕРСИЯ) ---
     const finalCtaSection = document.querySelector('.final-cta');
 
     if (finalCtaSection) {
@@ -363,143 +363,138 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctaContent = finalCtaSection.querySelector('.final-cta__text-wrapper');
         const ctaButton = finalCtaSection.querySelector('.cta-button');
 
-        // Функция, которая будет выполняться при скролле
+        // --- ЧАСТЬ 1: Анимация круга и контента, привязанная к скроллу ---
         const handleScrollAnimation = () => {
-            // Получаем "прямоугольник" секции со всеми ее позициями
             const rect = finalCtaSection.getBoundingClientRect();
-
-            // Расстояние, за которое анимация должна пройти от 0 до 100%
-            // В нашем случае - это высота окна браузера
-            const animDuration = window.innerHeight;
-
-            // Вычисляем прогресс. rect.top будет уменьшаться от высоты окна до 0,
-            // а затем уходить в минус. Нам нужен прогресс от 0 до 1.
-            let progress = 1 - (rect.top / animDuration);
-
-            // Ограничиваем прогресс в диапазоне [0, 1], чтобы избежать странных значений
+            const scrollDistance = finalCtaSection.offsetHeight - window.innerHeight;
+            let progress = -rect.top / scrollDistance;
             progress = Math.max(0, Math.min(1, progress));
 
-            // --- Управляем анимациями на основе прогресса ---
-
             // 1. Масштабируем круг
-            // Множитель 40 - это "магическое число", подобранное, чтобы круг
-            // гарантированно перекрыл экран любого размера по диагонали.
-            const scale = progress * 40;
+            const scale = progress * 30;
             expandingCircle.style.transform = `translate(-50%, -50%) scale(${scale})`;
 
             // 2. Показываем контент
-            // Контент начинает плавно появляться, когда круг уже немного вырос
-            let opacity = (progress - 0.2) * 2; // Начинает появляться с 20% прогресса
-            ctaContent.style.opacity = Math.max(0, Math.min(1, opacity));
+            let contentOpacity = (progress - 0.2) * 2;
+            ctaContent.style.opacity = Math.max(0, Math.min(1, contentOpacity));
 
-            // 3. Запускаем анимацию кнопки
-            // Когда фон почти полностью залит, запускаем "дразнилку"
-            if (progress > 0.95) {
-                ctaButton.classList.add('is-animating');
+            // ✅ НОВАЯ ЛОГИКА: Плавное исчезновение круга
+            // Начинаем убирать круг, когда прогресс скролла перевалил за 50%
+            const fadeStartProgress = 0.5;
+            if (progress > fadeStartProgress) {
+                // Рассчитываем "локальный" прогресс для затухания (от 0 до 1)
+                const fadeProgress = (progress - fadeStartProgress) / (1 - fadeStartProgress);
+                expandingCircle.style.opacity = 1 - fadeProgress;
             } else {
-                ctaButton.classList.remove('is-animating');
+                // Если мы скроллим обратно наверх, круг снова становится полностью видимым
+                expandingCircle.style.opacity = 1;
             }
         };
-        // ✅ НАЧАЛО ДОБАВЛЕННОГО КОДА
-        // Добавляем слушатели событий наведения мыши на кнопку
 
-        // Когда курсор входит в область кнопки - удаляем класс анимации
-        ctaButton.addEventListener('mouseenter', () => {
-            ctaButton.classList.remove('is-animating');
-        });
-
-        // Когда курсор покидает область кнопки - снова запускаем логику анимации,
-        // чтобы проверить, нужно ли возобновить "дразнилку".
-        ctaButton.addEventListener('mouseleave', () => {
-            handleScrollAnimation();
-        });
-        // ✅ КОНЕЦ ДОБАВЛЕННОГО КОДА
-
-        // Наблюдатель, который включает/выключает обработчик скролла
-        // для экономии ресурсов
-        const authorObserver = new IntersectionObserver((entries) => {
+        // "Наблюдатель", который включает/выключает тяжелый обработчик скролла
+        const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Если секция в поле зрения - начинаем слушать скролл
-                    window.addEventListener('scroll', handleScrollAnimation);
+                    window.addEventListener('scroll', handleScrollAnimation, { passive: true });
                 } else {
-                    // Если секция ушла из поля зрения - перестаем слушать
                     window.removeEventListener('scroll', handleScrollAnimation);
                 }
             });
         }, {
-            // Запас сверху и снизу, чтобы обработчик включался/выключался заранее
+            // Запускаем чуть раньше/позже, чтобы не было рывков
             rootMargin: '100px 0px 100px 0px'
         });
 
-        // Начинаем наблюдать за секцией
-        authorObserver.observe(finalCtaSection);
+        scrollObserver.observe(finalCtaSection);
+
+
+        // --- ЧАСТЬ 2: Анимация кнопки при появлении на экране ---
+        const buttonObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Если кнопка появилась в области видимости
+                if (entry.isIntersecting) {
+                    // Добавляем класс, который запускает CSS-анимацию
+                    entry.target.classList.add('is-animating');
+                }
+                // Если кнопка ушла из области видимости
+                else {
+                    // Убираем класс, сбрасывая кнопку в начальное состояние
+                    entry.target.classList.remove('is-animating');
+                }
+            });
+        }, {
+            threshold: 0.8 // Анимация начнется, когда будет видно 80% кнопки
+        });
+
+        // Запускаем наблюдение за кнопкой
+        buttonObserver.observe(ctaButton);
     }
+
     // --- 9. СЛАЙДЕР АВТОРОВ С АККОРДЕОНОМ (ИСПРАВЛЕННАЯ ВЕРСИЯ) ---
 
-// Инициализация Swiper.js
-const authorsSwiper = new Swiper('.authors-slider', {
-    // ✅ ОСНОВНОЕ ИСПРАВЛЕНИЕ: Убираем direction: 'vertical' (по умолчанию он 'horizontal')
-    
-    // Основные параметры
-    direction: 'horizontal',
-    effect: 'coverflow',
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: 3, // 'auto' - лучший вариант для адаптивности
-    loop: true,
+    // Инициализация Swiper.js
+    const authorsSwiper = new Swiper('.authors-slider', {
+        // ✅ ОСНОВНОЕ ИСПРАВЛЕНИЕ: Убираем direction: 'vertical' (по умолчанию он 'horizontal')
 
-    // Параметры эффекта Coverflow
-    coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 200,      // Увеличиваем глубину для эффекта перспективы
-        modifier: 1,
-        slideShadows: false,
-    },
+        // Основные параметры
+        direction: 'horizontal',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto', // 'auto' - лучший вариант для адаптивности
+        loop: true,
 
-    // Пагинация (точки)
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-
-    // Навигация (стрелки)
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-
-    // Адаптивность (Breakpoints)
-    breakpoints: {
-        // Настройки для мобильных (до 992px)
-        320: {
-            slidesPerView: 1, // Показываем 1 слайд на мобильных
-            spaceBetween: 20,
+        // Параметры эффекта Coverflow
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 200,      // Увеличиваем глубину для эффекта перспективы
+            modifier: 1,
+            slideShadows: false,
         },
-        // Настройки для десктопа (от 992px и выше)
-        992: {
-            slidesPerView: 3, // Показываем 3 слайда
-            spaceBetween: -80, // ✅ ВАЖНО: Отрицательное значение для "наезда" слайдов
-        }
-    }
-});
 
-// Логика для аккордеона (остается без изменений)
-const accordionItems = document.querySelectorAll('.accordion-item');
-accordionItems.forEach(item => {
-    const header = item.querySelector('.accordion-item__header');
-    header.addEventListener('click', () => {
-        const isOpen = item.classList.contains('is-open');
-        const parentSlide = item.closest('.swiper-slide');
-        parentSlide.querySelectorAll('.accordion-item').forEach(sibling => {
-            sibling.classList.remove('is-open');
-        });
-        if (!isOpen) {
-            item.classList.add('is-open');
+        // Пагинация (точки)
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+
+        // Навигация (стрелки)
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // Адаптивность (Breakpoints)
+        breakpoints: {
+            // Настройки для мобильных (до 992px)
+            320: {
+                slidesPerView: 'auto', // Показываем 1 слайд на мобильных
+                spaceBetween: 20,
+            },
+            // Настройки для десктопа (от 992px и выше)
+            992: {
+                slidesPerView: 'auto', // Показываем 3 слайда
+                spaceBetween: -80, // ✅ ВАЖНО: Отрицательное значение для "наезда" слайдов
+            }
         }
     });
-});
+
+    // Логика для аккордеона (остается без изменений)
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-item__header');
+        header.addEventListener('click', () => {
+            const isOpen = item.classList.contains('is-open');
+            const parentSlide = item.closest('.swiper-slide');
+            parentSlide.querySelectorAll('.accordion-item').forEach(sibling => {
+                sibling.classList.remove('is-open');
+            });
+            if (!isOpen) {
+                item.classList.add('is-open');
+            }
+        });
+    });
 
     // --- 10. ВЕРТИКАЛЬНЫЙ 3D-СЛАЙДЕР С ДВУСТОРОННЕЙ БЛОКИРОВКОЙ СКРОЛЛА ---
     const reasonsSliderElement = document.querySelector('.reasons-slider');
@@ -611,169 +606,196 @@ accordionItems.forEach(item => {
         }, { passive: false });
     }
     // --- 11. МНОГОШАГОВЫЙ КАЛЬКУЛЯТОР ЦЕНЫ (ИСПРАВЛЕННАЯ ВЕРСИЯ) ---
-const form = document.getElementById('price-calculator');
-if (form) { // ✅ ИЗМЕНЕНО: Проверка на `form` теперь здесь, а не `!form return`
+    const form = document.getElementById('price-calculator');
+    if (form) { // ✅ ИЗМЕНЕНО: Проверка на `form` теперь здесь, а не `!form return`
 
-    // --- 1. DOM-ЭЛЕМЕНТЫ ---
-    const steps = form.querySelectorAll('.form-step');
-    const prevBtn = form.querySelector('#prev-btn');
-    const nextBtn = form.querySelector('#next-btn');
-    const submitBtn = form.querySelector('#submit-btn');
-    const progressBarFill = form.querySelector('.progress-bar__fill');
-    // ✅ 1. Находим наш span для текста
-    const progressBarTextSpan = form.querySelector('.progress-bar__text span');
+        // --- 1. DOM-ЭЛЕМЕНТЫ ---
+        const calculatorInner = document.querySelector('.calculator__inner'); 
+        const steps = form.querySelectorAll('.form-step');
+        const prevBtn = form.querySelector('#prev-btn');
+        const nextBtn = form.querySelector('#next-btn');
+        const submitBtn = form.querySelector('#submit-btn');
+        const progressBarFill = form.querySelector('.progress-bar__fill');
+        // ✅ 1. Находим наш span для текста
+        const progressBarTextSpan = form.querySelector('.progress-bar__text span');
 
 
-    // --- 2. УПРАВЛЕНИЕ СОСТОЯНИЕМ ---
-    let currentStep = 1;
-    const formData = {
-        files: []
-    };
-    form.formData = formData;
+        // --- 2. УПРАВЛЕНИЕ СОСТОЯНИЕМ ---
+        let currentStep = 1;
+        const formData = {
+            files: []
+        };
+        form.formData = formData;
 
-    // ✅ 2. Создаем массив с текстами для каждого шага
-    const stepTexts = [
-        "Достигни 80% и получи 1000 руб", // Текст для шага 1
-        "Уже 55%! Набери 80% и получи 1000 рублей", // Текст для шага 2
-        "Отлично! Вы получите скидку 1000 рублей" // Текст для шага 3
-    ];
+        // ✅ 2. Создаем массив с текстами для каждого шага
+        const stepTexts = [
+            "Достигни 80% и получи 1000 руб", // Текст для шага 1
+            "Уже 55%! Набери 80% и получи 1000 рублей", // Текст для шага 2
+            "Отлично! Вы получите скидку 1000 рублей" // Текст для шага 3
+        ];
 
-    const updateStep = () => {
-        steps.forEach(step => {
-            step.style.display = step.dataset.step == currentStep ? 'block' : 'none';
-        });
+        const updateStep = () => {
+            steps.forEach(step => {
+                step.style.display = step.dataset.step == currentStep ? 'block' : 'none';
+            });
 
-        // ✅ 3. Обновляем текст в span
-        // Проверяем, что элемент найден, чтобы избежать ошибок
-        if (progressBarTextSpan) {
-            // Берем текст из массива. Так как массив начинается с 0, а шаги с 1, используем `currentStep - 1`
-            progressBarTextSpan.textContent = stepTexts[currentStep - 1];
+             if (currentStep === 3) {
+            calculatorInner.classList.add('step-3-active');
+        } else {
+            calculatorInner.classList.remove('step-3-active');
         }
 
-        progressBarFill.style.width = `${(currentStep / steps.length) * 100}%`;
-        prevBtn.style.display = currentStep > 1 ? 'inline-block' : 'none';
-        nextBtn.style.display = currentStep < steps.length ? 'inline-block' : 'none';
-        submitBtn.style.display = currentStep === steps.length ? 'inline-block' : 'none';
+            // ✅ 3. Обновляем текст в span
+            // Проверяем, что элемент найден, чтобы избежать ошибок
+            if (progressBarTextSpan) {
+                // Берем текст из массива. Так как массив начинается с 0, а шаги с 1, используем `currentStep - 1`
+                progressBarTextSpan.textContent = stepTexts[currentStep - 1];
+            }
 
-        form.dataset.currentStep = currentStep;
-    };
+            progressBarFill.style.width = `${(currentStep / steps.length) * 100}%`;
+            prevBtn.style.display = currentStep > 1 ? 'inline-block' : 'none';
+            nextBtn.style.display = currentStep < steps.length ? 'inline-block' : 'none';
+            submitBtn.style.display = currentStep === steps.length ? 'inline-block' : 'none';
 
-    // --- 3. ИНИЦИАЛИЗАЦИЯ КОМПОНЕНТОВ ---
-    // ... (весь ваш код для Flatpickr и бегунков остается без изменений) ...
-    // ✅ ИСПРАВЛЕНИЕ ДЛЯ КАЛЕНДАРЯ
-    const deadlineInput = document.getElementById('deadline');
-    // Проверяем, что Flatpickr загрузился, прежде чем его использовать
-    if (typeof flatpickr === 'function') {
-        flatpickr(deadlineInput, {
-            mode: "range",
-            dateFormat: "d.m.Y", // Формат, который видит пользователь
-            minDate: "today",
-            locale: "ru", // Говорим библиотеке использовать русскую локализацию
-            onClose: function (selectedDates) { // Используем onClose для надежности
-                if (selectedDates.length === 2) {
-                    const [start, end] = selectedDates;
-                    const diffTime = Math.abs(end - start);
-                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 чтобы включить оба дня
+            form.dataset.currentStep = currentStep;
+        };
 
-                    let daysString = "дней";
-                    if (diffDays % 10 === 1 && diffDays % 100 !== 11) {
-                        daysString = "день";
-                    } else if ([2, 3, 4].includes(diffDays % 10) && ![12, 13, 14].includes(diffDays % 100)) {
-                        daysString = "дня";
+        // --- 3. ИНИЦИАЛИЗАЦИЯ КОМПОНЕНТОВ ---
+        // ... (весь ваш код для Flatpickr и бегунков остается без изменений) ...
+        // ✅ ИСПРАВЛЕНИЕ ДЛЯ КАЛЕНДАРЯ
+        const deadlineInput = document.getElementById('deadline');
+        // Проверяем, что Flatpickr загрузился, прежде чем его использовать
+        if (typeof flatpickr === 'function') {
+            flatpickr(deadlineInput, {
+                mode: "range",
+                dateFormat: "d.m.Y", // Формат, который видит пользователь
+                minDate: "today",
+                locale: "ru", // Говорим библиотеке использовать русскую локализацию
+                onClose: function (selectedDates) { // Используем onClose для надежности
+                    if (selectedDates.length === 2) {
+                        const [start, end] = selectedDates;
+                        const diffTime = Math.abs(end - start);
+                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 чтобы включить оба дня
+
+                        let daysString = "дней";
+                        if (diffDays % 10 === 1 && diffDays % 100 !== 11) {
+                            daysString = "день";
+                        } else if ([2, 3, 4].includes(diffDays % 10) && ![12, 13, 14].includes(diffDays % 100)) {
+                            daysString = "дня";
+                        }
+
+                        deadlineInput.value = `${diffDays} ${daysString}`;
                     }
-
-                    deadlineInput.value = `${diffDays} ${daysString}`;
                 }
+            });
+        } else {
+            console.error('Библиотека Flatpickr не загружена!');
+        }
+
+
+        // ✅ ПРОВЕРЕННЫЙ КОД ДЛЯ БЕГУНКОВ (он у вас был правильный)
+        ['pages', 'originality'].forEach(id => {
+            const range = document.getElementById(`${id}-range`);
+            const valueDisplay = document.getElementById(`${id}-value`);
+
+            // Проверяем, что элементы найдены, прежде чем вешать обработчик
+            if (range && valueDisplay) {
+                range.addEventListener('input', () => {
+                    valueDisplay.textContent = `${range.value}${id === 'originality' ? '%' : ' стр'}`;
+                });
             }
         });
-    } else {
-        console.error('Библиотека Flatpickr не загружена!');
+
+
+        // --- 4. НАВИГАЦИЯ ПО ШАГАМ ---
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < steps.length) {
+                currentStep++;
+                updateStep();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        });
+
+
+        // --- 5. ОБРАБОТКА ФАЙЛОВ (DRAG & DROP) ---
+        // ... (весь ваш код для Drag & Drop остается без изменений) ...
+        const dropzone = document.getElementById('file-dropzone');
+        const fileInput = document.getElementById('files');
+        const fileList = document.getElementById('file-list');
+
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('is-dragover');
+        });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('is-dragover'));
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('is-dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', () => handleFiles(fileInput.files));
+
+        const handleFiles = (files) => {
+            for (const file of files) {
+                formData.files.push(file);
+            }
+            renderFileList();
+        };
+
+        const renderFileList = () => {
+            fileList.innerHTML = '';
+            formData.files.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-list-item';
+                fileItem.innerHTML = `<span>${file.name}</span><button type="button" data-index="${index}">&times;</button>`;
+                fileList.appendChild(fileItem);
+            });
+        };
+
+        fileList.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const index = e.target.dataset.index;
+                formData.files.splice(index, 1);
+                renderFileList();
+            }
+        });
+
+
+        // --- 6. ОТПРАВКА ФОРМЫ ---
+        form.addEventListener('submit', handleFormSubmit);
+
+        updateStep(); // Инициализация начального состояния
     }
 
-
-    // ✅ ПРОВЕРЕННЫЙ КОД ДЛЯ БЕГУНКОВ (он у вас был правильный)
-    ['pages', 'originality'].forEach(id => {
-        const range = document.getElementById(`${id}-range`);
-        const valueDisplay = document.getElementById(`${id}-value`);
-
-        // Проверяем, что элементы найдены, прежде чем вешать обработчик
-        if (range && valueDisplay) {
-            range.addEventListener('input', () => {
-                valueDisplay.textContent = `${range.value}${id === 'originality' ? '%' : ' стр'}`;
-            });
-        }
-    });
-
-
-    // --- 4. НАВИГАЦИЯ ПО ШАГАМ ---
-    nextBtn.addEventListener('click', () => {
-        if (currentStep < steps.length) {
-            currentStep++;
-            updateStep();
-        }
-    });
-
-    prevBtn.addEventListener('click', () => {
-        if (currentStep > 1) {
-            currentStep--;
-            updateStep();
-        }
-    });
-
-
-    // --- 5. ОБРАБОТКА ФАЙЛОВ (DRAG & DROP) ---
-    // ... (весь ваш код для Drag & Drop остается без изменений) ...
-    const dropzone = document.getElementById('file-dropzone');
-    const fileInput = document.getElementById('files');
-    const fileList = document.getElementById('file-list');
-
-    dropzone.addEventListener('click', () => fileInput.click());
-    dropzone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropzone.classList.add('is-dragover');
-    });
-    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('is-dragover'));
-    dropzone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropzone.classList.remove('is-dragover');
-        handleFiles(e.dataTransfer.files);
-    });
-    fileInput.addEventListener('change', () => handleFiles(fileInput.files));
-
-    const handleFiles = (files) => {
-        for (const file of files) {
-            formData.files.push(file);
-        }
-        renderFileList();
+    document.querySelectorAll('.range-slider input[type="range"]').forEach(slider => {
+    
+    // Функция для обновления фона
+    const updateSliderBackground = () => {
+        const min = slider.min ? slider.min : 0;
+        const max = slider.max ? slider.max : 100;
+        const value = slider.value;
+        // Вычисляем процент заполнения
+        const progress = ((value - min) / (max - min)) * 100;
+        
+        // Применяем градиент: синий до нужной точки, затем серый
+        slider.style.background = `linear-gradient(to right, #536DFF ${progress}%, #E4E7EC ${progress}%)`;
     };
 
-    const renderFileList = () => {
-        fileList.innerHTML = '';
-        formData.files.forEach((file, index) => {
-            const fileItem = document.createElement('div');
-            fileItem.className = 'file-list-item';
-            fileItem.innerHTML = `<span>${file.name}</span><button type="button" data-index="${index}">&times;</button>`;
-            fileList.appendChild(fileItem);
-        });
-    };
-
-    fileList.addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-            const index = e.target.dataset.index;
-            formData.files.splice(index, 1);
-            renderFileList();
-        }
-    });
-
-
-    // --- 6. ОТПРАВКА ФОРМЫ ---
-    form.addEventListener('submit', handleFormSubmit);
-
-    updateStep(); // Инициализация начального состояния
-}
+    // Вызываем функцию при загрузке страницы
+    updateSliderBackground();
     
+    // И при каждом изменении значения
+    slider.addEventListener('input', updateSliderBackground);
+});
 
-    
+
 
     // --- 12. ЛОГИКА МОДАЛЬНОГО ОКНА С ПРОМОКОДОМ (ОБНОВЛЕННАЯ ВЕРСИЯ) ---
     const promoForm = document.getElementById('promo-form');
@@ -827,7 +849,7 @@ if (form) { // ✅ ИЗМЕНЕНО: Проверка на `form` теперь �
     const cityListItems = cityList.querySelectorAll('li');
     // Предполагаем, что в шапке есть элемент с таким классом для названия города
     // Если класс другой, исправьте селектор
-    const headerCityName = document.querySelector('.header__city-name'); 
+    const headerCityName = document.querySelector('.header__city-name');
 
     // --- 1. ПРЕДОТВРАЩАЕМ ЗАКРЫТИЕ ОКНА ПРИ КЛИКЕ ВНУТРИ ---
     if (cityModalContent) {
@@ -881,9 +903,9 @@ if (form) { // ✅ ИЗМЕНЕНО: Проверка на `form` теперь �
 
                     // ...и закрываем модальное окно, убирая активный класс
                     cityModal.classList.remove('is-active');
-                    
+
                     document.body.classList.remove('no-scroll')
-                    
+
                 }
             }
         });
@@ -914,7 +936,7 @@ if (form) { // ✅ ИЗМЕНЕНО: Проверка на `form` теперь �
 
                 // --- 3. Переключаем контент ---
                 const targetContent = document.getElementById(`view-${view}`);
-                
+
                 contentBlocks.forEach(block => block.classList.remove('is-active'));
                 if (targetContent) {
                     targetContent.classList.add('is-active');
@@ -922,21 +944,21 @@ if (form) { // ✅ ИЗМЕНЕНО: Проверка на `form` теперь �
             });
         });
     }
-  // --- 8. ЛОГИКА PROMO BANNER ---
-const promoBanner = document.querySelector('.promo-banner');
+    // --- 8. ЛОГИКА PROMO BANNER ---
+    const promoBanner = document.querySelector('.promo-banner');
 
 
 
-if (promoBanner) {
-    const closeBannerBtn = promoBanner.querySelector('.promo-banner__close');
-    const closeBannerImg = promoBanner.querySelector('.promo-banner__img ');
+    if (promoBanner) {
+        const closeBannerBtn = promoBanner.querySelector('.promo-banner__close');
+        const closeBannerImg = promoBanner.querySelector('.promo-banner__img ');
 
-    closeBannerBtn.addEventListener('click', () => {
-        promoBanner.classList.remove('is-visible');
-        closeBannerImg.style.display = 'none';
-        closeBannerBtn.style.display = 'none';
-    });
-}
-  
+        closeBannerBtn.addEventListener('click', () => {
+            promoBanner.classList.remove('is-visible');
+            closeBannerImg.style.display = 'none';
+            closeBannerBtn.style.display = 'none';
+        });
+    }
+
 
 });

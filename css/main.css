@@ -13,8 +13,8 @@
 }
 @font-face {
   font-family: "Manrope";
-  src: url("../fonts/Manrope-SemiBold.woff2") format("woff2"),
-    url("../fonts/Manrope-SemiBold.woff") format("woff");
+  src: url("../fonts/Manrope-Semibold.woff2") format("woff2"),
+    url("../fonts/Manrope-Semibold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -68,9 +68,9 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "KurochkaLapkoi";
-  src: url("../fonts/Kurochkalapkoi.woff2") format("woff2"),
-    url("../fonts/Kurochkalapkoi.woff") format("woff");
+  font-family: "Kurochkalapkoi";
+  src: url("../fonts/kurochkalapkoi-regular.woff2") format("woff2"),
+    url("../fonts/kurochkalapkoi-regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -80,7 +80,7 @@
 :root {
   --font-family: "Inter Tight", sans-serif;
   --second-family: "Manrope", sans-serif;
-  --font-handwritten: "KurochkaLapkoi", sans-serif;
+  --font-handwritten: "Kurochkalapkoi", sans-serif;
   --background-gradient: linear-gradient(180deg, #4d4dff 0%, #15a7f5 100%);
   --color-black: #333333;
   --color-white: #fff;
@@ -105,7 +105,9 @@ body {
   font-size: 20px;
   font-weight: 400;
   background-color: #f1f3f5;
+  letter-spacing: -2%;
   color: #2d2d2d;
+  overflow-x: hidden;
 }
 
 body.no-scroll {
@@ -292,9 +294,9 @@ body.no-scroll {
   gap: 6px;
   background: none;
   border: none;
-  color: inherit;
-  font-family: inherit;
-  font-size: 14px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
   cursor: pointer;
 }
 .header__burger-btn {
@@ -1050,7 +1052,7 @@ body.no-scroll {
 
   /* ✅ ИЗМЕНЕНИЕ: Добавляем отступы, чтобы текст не наезжал на label.
      padding: СВЕРХУ СПРАВА СНИЗУ СЛЕВА; */
-  padding: 38px 16px 16px 16px;
+  padding: 30px 16px 24px 16px;
 
   border: none;
   border-radius: 12px;
@@ -1068,11 +1070,12 @@ body.no-scroll {
 
   /* ✅ ИЗМЕНЕНИЕ: Позиционируем не по центру, а чуть ниже,
      чтобы ссылка была на одной линии с вводимым текстом */
-  top: 42px;
+  top: 27px;
   transform: none; /* Убираем translateY, он больше не нужен */
-
-  font-size: 14px;
-  color: #4a6dff;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #3c83ed;
   text-decoration: underline dashed;
   text-underline-offset: 4px;
 }
@@ -1181,9 +1184,9 @@ body.no-scroll {
   transform: translateY(-40%);
 }
 .hero__decor-text {
-  width: 308px;
-  max-width: 307px;
-  font-family: "KurochkaLapkoi";
+  width: 350px;
+
+  font-family: "Kurochkalapkoi";
   font-size: 34px;
   font-weight: 400;
   line-height: 102%;
@@ -1193,56 +1196,12 @@ body.no-scroll {
   text-align: center;
 }
 .text-down {
-  max-width: 250px;
+  width: 308px;
   position: absolute;
   right: -104%;
   bottom: -63%;
   z-index: 10;
   transform: rotate(3deg);
-}
-
-/* --- ADVANTAGES-БЛОК --- */
-.advantages {
-  background-color: var(--color-white);
-  padding: 10px 0;
-  position: relative;
-}
-.advantages__skeleton {
-  display: none;
-} /* Скелетон больше не используется */
-.advantages__grid {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.advantage-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-  height: 194px;
-  background-color: #333;
-  font-weight: 600;
-  line-height: 110%;
-  border-radius: 18px;
-  padding: 24px;
-  color: var(--color-white);
-}
-.advantage-card__title {
-  font-family: var(--second-family);
-  font-weight: 600;
-  font-size: 28px;
-  margin-bottom: 16px;
-}
-.advantage-card__description {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.1;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 280px;
 }
 
 /* ==========================================================================
@@ -1358,9 +1317,7 @@ body.no-scroll {
   }
   .hero__skeleton,
   .hero__content {
-    max-width: 1230px;
     width: 100%;
-    padding: 0 30px;
     margin: 0 auto;
     text-align: center;
     padding-top: 64px;
@@ -1464,6 +1421,7 @@ body.no-scroll {
   }
   .hero__subtitle {
     font-size: 24px;
+    font-weight: 400;
     max-width: 813px;
     margin: 0 auto 36px;
     text-align: center;
@@ -1491,17 +1449,7 @@ body.no-scroll {
     height: auto;
   }
 }
-/* .hero.highlight-visible .hero__title span::before {
-    width: 504px;
-    height: 85px;
-    border-radius: 8px;
-    top: 50%;
-    left: 50%;
-    bottom: auto;
-    right: auto;
-    transform: translate(-50%, -50%) rotate(-1.36deg) scaleX(1);
-  } */
-/* ШАГ 1: Подготавливаем родительский SPAN */
+
 .hero__title span {
   position: relative; /* Создаем контекст для позиционирования псевдоэлемента */
   z-index: 1; /* Убедимся, что текст всегда НАД фоном */
@@ -1543,36 +1491,50 @@ body.no-scroll {
 }
 
 /* --- ADVANTAGES-БЛОК --- */
+
 .advantages {
-  padding: 80px 0;
+  background-color: #f1f3f5;
+  padding: 14px 0;
+  position: relative;
 }
-.advantages .container {
-  transform: translateY(0);
-}
+.advantages__skeleton {
+  display: none;
+} /* Скелетон больше не используется */
 .advantages__grid {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 13px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
-.advantage-card {
-  flex: 1;
-  min-width: 400px;
-  max-width: 584px;
-  min-height: 303px;
-  padding: 34px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+
 .advantage-card__title {
-  font-family: "Inter Tight";
-  font-size: 54px;
+  font-family: var(--second-family);
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.advantage-card__description {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 280px;
+}
+
+.advantages .container {
+  transform: translateY(0);
+}
+
+.advantage-card__title {
+  font-size: 38px;
   font-weight: 600;
   line-height: 1.1;
 }
 .advantage-card__description {
-  font-family: "Inter Tight";
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.64);
   max-width: 100%;
@@ -1585,16 +1547,54 @@ body.no-scroll {
 .hero__sticker img {
   max-width: 300px;
 }
+.advantage-card {
+  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
+  min-height: 194px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #333;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 110%;
+  border-radius: 18px;
+  color: var(--color-white);
+  flex: 1;
+}
 
 /* ==========================================================================
    5. СТИЛИ ДЛЯ БОЛЬШИХ ЭКРАНОВ (ОПЦИОНАЛЬНО >= 1200px)
    ========================================================================== */
+
+@media (min-width: 460px) {
+  .advantage-card {
+    padding: 24px;
+    min-width: 400px;
+    max-width: 584px;
+  }
+  .advantage-card__title {
+    font-family: var(--second-family);
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .advantage-card__description {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 280px;
+  }
+}
 @media (min-width: 1200px) {
   .header__nav-list {
     gap: 72px;
   }
   .hero__title {
-    font-size: 88px;
+    font-size: 100px;
   }
   .hero.highlight-visible .hero__title span::before {
     width: 504px;
@@ -1608,8 +1608,8 @@ body.no-scroll {
   .hero__sticker--bulb {
     display: block;
     position: absolute;
-    top: 19%;
-    right: -19%;
+    top: 3%;
+    right: -23%;
   }
   .hero__sticker img {
     max-width: 400px;
@@ -1622,13 +1622,73 @@ body.no-scroll {
     z-index: 10;
   }
   .hero__arr-down {
-    right: 15%;
+    right: 26%;
     bottom: -15%;
   }
 }
 @media (min-width: 1400px) {
+  .hero__arr-up {
+    right: 23%;
+  }
+  .hero__arr-down {
+    right: 23%;
+    bottom: -18%;
+  }
   .hero__sticker img {
     max-width: 542px;
+  }
+
+  .hero__sticker--bulb {
+    display: block;
+    position: absolute;
+    top: 12%;
+    right: -16%;
+  }
+  .hero__decor-text {
+    width: 350px;
+  }
+  .text-down {
+    width: 308px;
+  }
+  .advantages__grid {
+    position: relative;
+  }
+  .advantages__grid-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: url("../assets/img/decor.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
+  }
+  .advantage-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 303px;
+    background-color: #333;
+    font-weight: 600;
+    line-height: 110%;
+    border-radius: 18px;
+    padding: 34px 36px;
+    color: var(--color-white);
+  }
+  .advantage-card__title {
+    font-size: 54px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .advantage-card__description {
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.64);
+    max-width: 100%;
   }
 }
 
@@ -1638,10 +1698,15 @@ body.no-scroll {
 
 .steps {
   padding: 70px 0 0 0;
-  background: url("../assets/img/signatura.png"), #f8f9fa;
+  background: url("../assets/img/decor-1.png"), url("../assets/img/decor-2.png"),
+    url("../assets/img/decor-3.png"), url("../assets/img/decor-4.png"),
+    url("../assets/img/decor-5.png"), url("../assets/img/signatura.png"),
+    #f1f3f5;
   background-repeat: no-repeat;
-  background-size: 846px auto;
-  background-position: right bottom;
+  background-size: 304px auto, 379px auto, 238px auto, 319px auto, 386px auto,
+    846px auto;
+  background-position: left 9%, right 26%, left 44%, right 63%, left 88%,
+    right 98%;
 }
 .steps__container {
   width: 100%;
@@ -1707,6 +1772,7 @@ body.no-scroll {
   transform: translateY(0);
 }
 .step-card {
+  max-width: 578px;
   width: 100%;
   background-color: var(--color-white);
   border: 1px solid #eaecf0;
@@ -1746,26 +1812,31 @@ body.no-scroll {
 /* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
 @media (min-width: 992px) {
   .step-card {
+    align-self: end;
     padding: 36px;
     align-self: center;
   }
   .step-card__header {
     margin-bottom: 64px;
   }
-
   .steps__title {
+    margin-bottom: 80px;
   }
+
   .step-card__description {
-    font-family: "Inter Tight";
     font-size: 20px;
     font-weight: 700;
   }
   .steps-timeline {
     display: grid;
-    grid-template-columns: 1fr 100px 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr 130px 1fr;
+    width: 100%;
+    gap: 65px;
     align-items: start;
     margin-bottom: 60px;
+  }
+  .steps-timeline .step-card {
+    max-width: 578px;
   }
   .step-card__number {
     display: inline-block;
@@ -1884,67 +1955,62 @@ body.no-scroll {
 }
 
 /* ==========================================================================
-   СТИЛИ ФИНАЛЬНОГО CTA-БЛОКА
+   СТИЛИ ФИНАЛЬНОГО CTA-БЛОКА (ИСПРАВЛЕННАЯ ВЕРСИЯ С ИЗМЕНЕНИЯМИ)
    ========================================================================== */
 
 /* 1. Родительский блок-распорка */
 .final-cta {
-  /* Высота больше высоты экрана, чтобы было куда скроллить */
-  height: 250vh;
+  height: 200vh;
   position: relative;
-  background-color: #fff; /* Фон "до" анимации */
+  background-color: #EBEDEF;
 }
 
 /* 2. Анимированный круг */
 .expanding-circle {
-  position: fixed; /* Фиксируем относительно окна браузера */
+  position: fixed;
+  background: #fff;
   top: 50%;
   left: 50%;
-  width: 100px; /* Начальный размер не важен, т.к. управляем через scale */
-  height: 100px;
-  background-color: #ebedef; /* Темный цвет для заливки */
+  width: 100px;
+  height: 100px;  
   border-radius: 50%;
-  /* Изначально круг сжат в точку и идеально по центру */
   transform: translate(-50%, -50%) scale(0);
-  z-index: 1; /* Находится под контентом, но над остальной страницей */
+  z-index: 1;
+  /* ✅ ДОБАВЛЕНО: Плавный переход для opacity */
+  transition: opacity 0.4s ease-out;
 }
 
 /* 3. "Липкий" контейнер для контента */
 .final-cta__sticky-content {
   position: sticky;
-  /* background: #fff; */
   top: 0;
-
-  height: 80vh; /* Занимает всю высоту экрана */
-  width: calc(100%-30px);
-  z-index: 2; /* Контент всегда выше круга */
-
-  /* Центрируем текстовый блок внутри */
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 20px;
-  padding-bottom: 40px;
   box-sizing: border-box;
-  border-radius: 36px;
 }
 
 /* 4. Контент внутри */
 .final-cta__text-wrapper {
-  /* Изначально контент невидим, появится по мере анимации */
   opacity: 0;
-  /* Плавное появление */
   transition: opacity 0.3s ease-in-out;
-  max-width: 1175px;
+  background: #fff;
+  padding: 95px 0 32px;
+  border-radius: 36px;
 }
 
+/* ... остальные стили для заголовка и текста остаются без изменений ... */
 .final-cta__title {
   font-family: "Inter Tight";
   font-weight: 600;
   font-size: 44px;
   line-height: 1;
-  color: #2d2d2d; /* Текст сразу делаем светлым для темного фона */
+  color: #2d2d2d;
   margin: 0 0 50px 0;
   text-align: left;
 }
@@ -1965,63 +2031,42 @@ body.no-scroll {
   margin-bottom: 32px;
 }
 
-/* Стили для кнопки берем из предыдущего блока для консистентности */
+/*
+ * 5. СТИЛИ ДЛЯ КНОПКИ С ЭФФЕКТОМ "НАЛИВАНИЯ"
+ */
 .final-cta .cta-button {
-  background-color: #333333;
-  color: #fff;
-  border: none;
+  background: linear-gradient(to right, #333333 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  color: #333333;
+  border: 2px solid #333333;
   border-radius: 14px;
   padding: 24px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  transform-origin: center; /* Важно для корректной анимации */
+  transition: color 0.4s ease-in-out, background-position 0.6s ease-out;
+}
+
+/* ✅ ДОБАВЛЕНО: Новый класс, который ЗАПУСКАЕТ анимацию */
+.final-cta .cta-button.is-animating {
+  background-position: left bottom;
+  color: #fff;
 }
 
 .final-cta .cta-button:hover {
-  background-color: #333333a1;
+  background-position: left bottom;
+  color: #fff;
 }
 
 .final-cta__disclaimer {
   font-size: 12px;
-  color: #b3b3b3; /* Светлый цвет для дисклеймера */
+  color: #b3b3b3;
   line-height: 1.5;
   max-width: 700px;
   margin: 0 auto;
 }
-
-/* 5. Анимация кнопки (адаптировано из CodePen) */
-@keyframes wobble {
-  0% {
-    transform: none;
-  }
-  15% {
-    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
-  }
-  30% {
-    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
-  }
-  45% {
-    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
-  }
-  60% {
-    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
-  }
-  75% {
-    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
-  }
-  100% {
-    transform: none;
-  }
-}
-
-/* Класс, который запускает анимацию */
-.final-cta .cta-button.is-animating {
-  animation: wobble 1s linear infinite;
-}
-
-/* --- АДАПТИВ >= 768px --- */
+/* --- АДАПТИВ (без существенных изменений) --- */
 @media (min-width: 768px) {
   .final-cta__title {
     font-size: 48px;
@@ -2029,27 +2074,33 @@ body.no-scroll {
   }
 }
 @media (min-width: 1200px) {
+  .final-cta__text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
   .final-cta__title {
-    padding-top: 40px;
-    font-family: "Inter Tight";
+    max-width: 55%;
+    text-align: center;    
     font-weight: 600;
-    font-size: 74px;
     line-height: 1.1;
     margin-bottom: 55px;
   }
   .final-cta .cta-button {
     display: block;
     width: 100%;
-    max-width: 668px;
+    min-width: 668px;
   }
 }
+
 /* ==========================================================================
    СТИЛИ БЛОКА АВТОРОВ (AUTHORS)
    ========================================================================== */
 
 /* --- Общие стили блока --- */
 .authors {
-  padding: 155px 0 110px 0;
+  padding: 255px 0 0 0;
 }
 
 .authors__title {
@@ -2074,12 +2125,13 @@ body.no-scroll {
 }
 
 .authors-slider .swiper-slide {
+  width: 365px;
+  max-width: 774px;
   height: auto;
-  background-color: #fff;
+ background: transparent;
   border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
+  
+  
 
   /* Анимация эффектов */
   transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
@@ -2092,6 +2144,7 @@ body.no-scroll {
 
 /* Активный слайд - в фокусе, без эффектов */
 .authors-slider .swiper-slide-active {
+  
   transform: scale(1);
   filter: blur(0);
   opacity: 1;
@@ -2100,9 +2153,15 @@ body.no-scroll {
 
 /* --- Стилизация карточки автора --- */
 .author-card {
-  /* ... здесь будут стили для карточки автора: аватар, имя, теги и т.д. ... */
-  /* Для примера, можно добавить display: flex; flex-direction: column; gap: 16px; */
+ background: #fff;
+ padding: 28px 36px;
+ border-radius: 24px;
+ margin-bottom: 10px;
+ overflow: hidden;
+ box-shadow: 0 37px 81px 0 rgba(0, 0, 0, 0.1), 0 147px 147px 0 rgba(0, 0, 0, 0.09), 0 331px 199px 0 rgba(0, 0, 0, 0.05), 0 589px 235px 0 rgba(0, 0, 0, 0.01), 1px 920px 250px 0 rgba(0, 0, 0, 0), 0 22px 59px 0 rgba(0, 0, 0, 0.11);
+ 
 }
+
 .author-card__left {
   display: flex;
   gap: 16px;
@@ -2178,17 +2237,20 @@ body.no-scroll {
   border-radius: 100px;
 }
 /* --- Стилизация аккордеона --- */
-.works-accordion {
-  margin-top: 24px;
+.works-accordion { 
+  background: transparent; 
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .accordion-item {
-  background-color: #f8f9fa;
+  background: #fff;
+  box-shadow: 0 37px 81px 0 rgba(0, 0, 0, 0.1), 0 147px 147px 0 rgba(0, 0, 0, 0.09), 0 331px 199px 0 rgba(0, 0, 0, 0.05), 0 589px 235px 0 rgba(0, 0, 0, 0.01), 1px 920px 250px 0 rgba(0, 0, 0, 0), 0 22px 59px 0 rgba(0, 0, 0, 0.11);
+
+  
   border-radius: 12px;
-  border: 1px solid #eaecf0;
+  
 }
 
 .accordion-item__header {
@@ -2202,8 +2264,8 @@ body.no-scroll {
 .accordion-item__arrow {
   width: 12px;
   height: 12px;
-  border-left: 2px solid #344054;
-  border-bottom: 2px solid #344054;
+  border-left: 2px solid #B3B3B3;
+  border-bottom: 2px solid #B3B3B3;
   transform: rotate(-45deg);
   transition: transform 0.3s ease;
 }
@@ -2212,13 +2274,48 @@ body.no-scroll {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-  padding: 0 16px;
+  
 }
 
 .work-details {
   border-top: 1px solid #eaecf0;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding: 24px;
+}
+.work-details-top {
+  background: rgba(241, 243, 245, 0.5);
+  border-radius: 20px;
+  
+  margin-bottom: 40px;
+
+}
+.work-details__description {
+  color: #2D2D2D;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.work-details__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 66px;
+  margin-bottom: 60px;
+}
+.work-details__img-decor {
+  align-self: flex-start;
+}
+.work-details__review {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.work-details__review-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.work-details__stars {
+  display: flex;
+  gap: 5px;
 }
 
 /* Стили для открытого состояния аккордеона */
@@ -2240,26 +2337,75 @@ body.no-scroll {
 .swiper-pagination {
   position: static; /* На мобильных пагинация под слайдером */
   margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* Расстояние между линиями */
 }
 
 .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  background-color: rgba(255, 255, 255, 0.5);
+  width: 54px;
+  height: 2px;
+  
+  /* 2. Задаем цвет и убираем стандартную прозрачность */
+  background-color: #D9D9D9; /* Стандартный серый цвет */
   opacity: 1;
-  transition: width 0.3s ease, background-color 0.3s ease;
+
+  /* 3. Убираем скругление, чтобы это была линия, а не точка */
+  border-radius: 2px; /* Можно оставить небольшое скругление для эстетики */
+
+  /* 4. Анимация для плавного перехода */
+  transition: all 0.4s ease;
 }
 
 .swiper-pagination-bullet-active {
-  width: 24px;
-  border-radius: 4px;
-  background-color: #fff;
+  width: 96px;
+  height: 4px;
+
+  /* 2. Задаем активный цвет */
+  background-color: #538AFF;
 }
 
 /* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
 @media (min-width: 992px) {
+  .work-details__type {
+    color: #B3B3B3;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  .work-details__type-header {
+    margin-bottom: 36px;
+  }
+  .work-details__tags {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 36px;
+
+  }
+  .work-details__tags-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 11px 26px;
+    border-radius: 10px;
+    background-color: #538AFF;
+  }
+  .work-details__type-middle {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 37px;
+  }
   .authors__title {
     margin-bottom: 76px;
+  }
+  .work-details__price {
+    color: #2D2D2D;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.2;
   }
 
   /* Показываем стрелки навигации */
@@ -2269,8 +2415,8 @@ body.no-scroll {
     /* Позиционирование относительно .authors-slider-wrapper */
     top: 50%;
     transform: translateY(-50%);
-    width: 56px;
-    height: 56px;
+    width: 130px;
+    height: 130px;
     background-color: #538aff;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -2285,19 +2431,16 @@ body.no-scroll {
   }
 
   .swiper-button-prev {
-    left: calc(50% - 400px);
+    left: calc(50% - 580px);
   }
   .swiper-button-next {
-    right: calc(50% - 400px);
+    right: calc(50% - 580px);
   }
 
   .authors-slider .swiper-slide {
-    width: calc(100% / 3.5);
-    height: auto;
-    background-color: #fff;
-    border-radius: 24px;
-    padding: 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* width: calc(100% / 3.5); */
+    width: 774px;    
+    height: auto;    
     box-sizing: border-box;
 
     /* Добавляем 'filter' в список анимируемых свойств */
@@ -2311,6 +2454,7 @@ body.no-scroll {
 
   /* ✅ ИСПРАВЛЕНИЕ: Сбрасываем эффекты для активного слайда и увеличиваем его */
   .authors-slider .swiper-slide-active {
+    background: none;
     opacity: 1;
     filter: blur(0);
     transform: scale(1.05); /* Эффект "наезда" */
@@ -2324,7 +2468,8 @@ body.no-scroll {
 
   /* Пагинация остается внизу, но можно увеличить отступ */
   .swiper-pagination {
-    margin-top: 60px;
+    margin-top: 54px;
+    padding-bottom: 110px;
   }
 }
 /* ==========================================================================
@@ -2345,7 +2490,7 @@ body.no-scroll {
 .reasons__title {
   font-family: var(--second-family);
   font-size: 28px;
-  line-height: 1.3;
+  line-height: 1.1;
   font-weight: 600;
   color: #fff;
   text-align: center;
@@ -2357,7 +2502,6 @@ body.no-scroll {
 
 .reasons-slider-wrapper {
   position: relative;
-  
 }
 
 /* --- Стилизация Swiper --- */
@@ -2448,14 +2592,10 @@ body.no-scroll {
 /* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
 @media (min-width: 992px) {
   .reasons__inner {
-  
-  background: url('../assets/img/vert__slider-bg.png'), #101010;
+    background: url("../assets/img/vert__slider-bg.png"), #101010;
     background-repeat: no-repeat;
     background-position: right 35%;
     background-size: 530px;
-    padding: 0 0 100px 0;
-}
-  .reasons__inner {
     padding: 164px 0 232px 0;
   }
   .reasons__title {
@@ -2466,56 +2606,55 @@ body.no-scroll {
   }
 
   /*
-   * 1. ИЗМЕНЕНИЯ ДЛЯ КОНТЕЙНЕРА СЛАЙДЕРА
+   * 1. КОНТЕЙНЕР-ОБЕРТКА СЛАЙДЕРА (THE VIEWPORT)
+   * Мы задаем ему фиксированную высоту, равную максимальной высоте нашего слайда.
+   * Это создает стабильное "окно просмотра", в котором Swiper может уверенно работать.
+   * Именно это исправляет проблему с "залипанием" скролла.
    */
   .reasons-slider {
-    /* Убираем высоту, зависящую от экрана (vh) и старый max-height */
-    /* height: 70vh; */
-    /* max-height: 600px; */
-
-    /* ЗАДАЕМ ФИКСИРОВАННУЮ ВЫСОТУ, равную максимальной высоте слайда. */
-    /* Это создаст "окно просмотра" для одного слайда. */
-    height: 662px;
+    height: 642px;
     width: 100%;
-  }
-
-  .reasons-slider .swiper-wrapper {
-    transform-style: preserve-3d;
   }
 
   /*
-   * 2. ИЗМЕНЕНИЯ ДЛЯ САМОГО СЛАЙДА
+   * 2. САМ СЛАЙД (THE SLIDE)
+   * Это flex-контейнер для карточки и картинки.
+   * Его высота будет автоматически определяться высотой контента внутри.
    */
   .reasons-slider .swiper-slide {
-    /* Старые стили остаются */
     display: flex;
-    align-items: center;
+    flex-direction: row; /* Элементы в ряд */
+    align-items: center; /* Выравниваем по центру на всякий случай */
     gap: 10px;
 
-    /* --- НОВЫЕ СТИЛИ ДЛЯ РАЗМЕРА И ПРОПОРЦИЙ --- */
-
-    /* 1. Задаем требуемые пропорции */
-    aspect-ratio: 1.8 / 1;
-
-    /* 2. Ограничиваем максимальную высоту */
-    max-height: 662px;
-
-    /* 3. Задаем ширину 100%, чтобы aspect-ratio мог вычислить высоту.
-       Также ограничиваем максимальную ширину, чтобы на сверхшироких
-       экранах слайд не растягивался. (1191.6px = 662px * 1.8) */
-    width: 100%;
-    max-width: 1191.6px;
-
-    /* 4. Центрируем слайд по горизонтали, если он стал уже контейнера */
-    margin: 0 auto;
+    /* Ограничиваем максимальную ширину слайда и центрируем его */
+    max-width: 1166px; /* 578px (карточка) + 578px (картинка) + 10px (промежуток) */
+    width: 90%; /* Делаем его отзывчивым на экранах меньше 1166px */
+    margin: 0 auto; /* Центрирование по горизонтали */
   }
 
+  /*
+   * 3. КОНТЕНТ ВНУТРИ СЛАЙДА (CARD & IMAGE)
+   * Здесь происходит вся магия размеров и пропорций.
+   */
   .reason-card,
   .reason-image {
+    /* flex: 1; заставляет оба элемента занимать равное пространство */
+    flex: 1;
+    
+    /* Устанавливаем максимальную ширину, как вы и просили */
+    max-width: 578px;
+    
+    /* ✅ ЗАДАЕМ ПРОПОРЦИИ: высота будет 1 / 0.9 от ширины */
+    aspect-ratio: 0.9 / 1;
+    
+    /* Благодаря aspect-ratio, высота будет вычисляться АВТОМАТИЧЕСКИ
+       и не превысит 642px, так как ширина ограничена 578px.
+       (578px / 0.9 = 642.2px) */
+
     border-radius: 36px;
     overflow: hidden;
-    height: 100%; /* Растягиваем на всю высоту слайда */
-    
+    height: auto; /* Убираем фиксированную высоту, чтобы aspect-ratio работал */
   }
 
   .reason-card {
@@ -2529,7 +2668,6 @@ body.no-scroll {
   .reason-card__header {
     display: flex;
     flex-direction: column;
-    
     gap: 80px;
     margin-bottom: auto; /* Прижимает описание к низу */
   }
@@ -2545,7 +2683,7 @@ body.no-scroll {
     font-size: 14px;
     font-weight: 500;
     color: #667085;
-    margin-bottom: 0; /* Убираем отступ */
+    margin-bottom: 0;
   }
 
   .reason-card__title {
@@ -2562,16 +2700,13 @@ body.no-scroll {
     margin-top: 24px;
   }
 
-  .reason-image {
-    background-color: #444;
-  }
-
   .reason-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 }
+
 
 /* ==========================================================================
    СТИЛИ БЛОКА КАЛЬКУЛЯТОРА
@@ -2585,6 +2720,13 @@ body.no-scroll {
   background: #fff;
   padding: 100px 0;
   border-radius: 36px;
+}
+.calculator__inner.step-3-active {
+  /* Замените 'path/to/your/image.jpg' на реальный путь к вашей картинке */
+  background-image: url('../assets/img/calculator__bg.png');
+  background-size: 337px;
+  background-position: right bottom;
+  background-repeat: no-repeat;
 }
 .calculator__title {
   margin-bottom: 32px;
@@ -2701,6 +2843,7 @@ body.no-scroll {
 }
 .form-field select#work-type {
   padding: 24px;
+  
 }
 .form-field input#subject {
   padding: 24px;
@@ -2710,36 +2853,84 @@ body.no-scroll {
   padding: 24px;
 }
 .form-column .form-field label {
-  position: static;
-  display: block;
+  position: relative;
+  top: 18px;
+  left: 17px;
+  display: inline-block;
+  background: #fff;
+  width: fit-content;
+  
 }
+/* ==========================================================================
+   СТИЛИ ДЛЯ КАСТОМНОГО SELECT
+   ========================================================================== */
+
+/* 1. Создаем контейнер для позиционирования стрелки */
+.custom-select-wrapper {
+  position: relative;
+}
+
+/* 2. Стилизуем саму стрелку с помощью псевдоэлемента */
+.custom-select-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%; /* Выравнивание по центру */
+  right: 24px; /* Отступ справа */
+  transform: translateY(-50%);
+  
+  /* --- ИЗМЕНЕНИЯ ЗДЕСЬ --- */
+  /* Устанавливаем точные размеры вашего SVG */
+  width: 13px;
+  height: 8px;
+
+  /* Убираем старые стили для треугольника (border) */
+  border: none; 
+
+  /* Вставляем ваш SVG прямо в CSS с помощью Data URI */
+  background-image: url("../assets/icons/select-arr.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  /* Это свойство по-прежнему важно */
+  pointer-events: none; 
+  
+  transition: transform 0.3s ease;
+}
+
+/* Опционально: поворачиваем стрелку, когда select открыт (работает не во всех браузерах) */
+.custom-select-wrapper select:focus + label + select:focus,
+.custom-select-wrapper select:active + label + select:active {
+    /* Эта часть может быть нестабильной, но можно попробовать */
+}
+.custom-select-wrapper.is-open::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+
+/* 3. Скрываем стандартную стрелку браузера у select */
+.calculator-form select#work-type {
+  /* Для большинства современных браузеров */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 40px; 
+}
+  
+  /* Убираем стрелку в IE */
+  .calculator-form select#work-type::-ms-expand {
+    display: none;
+  }
+  
+  
 /* --- Кастомный Range Slider --- */
 .range-slider {
   display: flex;
   align-items: center;
   gap: 16px;
+  padding-top: 20px;
 }
-.range-slider input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 6px;
-  background: #e4e7ec;
-  border-radius: 3px;
-  outline: none;
-}
-.range-slider input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #536dff;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
-.range-slider__value {
+
+/* .range-slider__value {
   width: 30%;
   padding: 8px 16px;
   border: 1px solid #d0d5dd;
@@ -2747,7 +2938,81 @@ body.no-scroll {
   font-size: 16px;
   text-align: center;
   min-width: 80px;
+} */
+
+/* ==========================================================================
+   КАСТОМНЫЕ СТИЛИ ДЛЯ INPUT[TYPE="RANGE"]
+   ========================================================================== */
+
+/* 1. Общий сброс стилей для самого input */
+.range-slider input[type="range"] {
+  -webkit-appearance: none; /* Убираем стандартный вид в Chrome/Safari */
+  appearance: none;
+  width: 100%;
+  height: 7px; /* Задаем высоту дорожки здесь */
+  background: transparent; /* Фон самого инпута делаем прозрачным */
+  outline: none;
+  cursor: pointer;
 }
+
+/* --- Стилизация БЕГУНКА (Thumb) --- */
+
+/* Для Chrome, Safari, Opera, Edge */
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Обязательно для кастомизации */
+  appearance: none;
+  
+  width: 24px;  /* Ширина кружка */
+  height: 24px; /* Высота кружка */
+   background: transparent;
+  border-radius: 50%; /* Делаем его круглым */
+  border: 6px solid #4d4dff;  /* Белая обводка */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Легкая тень для объема */
+  
+  /* Магия для вертикального центрирования бегунка на дорожке */
+  margin-top: -9px; 
+}
+
+/* Для Firefox */
+.range-slider input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  border: 6px solid #4d4dff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Стилизация ДОРОЖКИ (Track) --- */
+
+/* Для Chrome, Safari, Opera, Edge */
+.range-slider input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  background: #E4E7EC; /* Серый цвет для незаполненной части */
+  border-radius: 3px; /* Скругляем края дорожки */
+}
+
+/* Для Firefox */
+.range-slider input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  background: #E4E7EC;
+  border-radius: 3px;
+}
+
+/* --- Бонус: Стилизация ЗАПОЛНЕННОЙ части дорожки --- */
+
+/* Для Firefox это делается просто */
+.range-slider input[type="range"]::-moz-range-progress {
+  background: linear-gradient(90deg, #4d4dff 0%, #15a7f5 100%); /* Синий цвет для заполненной части */
+  height: 6px;
+  border-radius: 3px;
+}
+
+/* Для Webkit-браузеров (Chrome/Safari) нужен трюк с градиентом */
+/* Мы добавим эту логику с помощью небольшого JS ниже */
+
 
 /* --- Кастомный File Input --- */
 .form-field__wrapper {
@@ -2811,12 +3076,13 @@ textarea#requirements {
   cursor: pointer;
   color: #98a2b3;
 }
+.form-step[data-step="3"]
 
 /* --- Навигация --- */
 .form-navigation {
   margin-top: 32px;
   display: flex;
-  gap: 16px;
+  gap: 10px;
 }
 .btn {
   width: 100%;
@@ -2898,7 +3164,7 @@ textarea#requirements {
   padding: 166px 144px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #4d4dff 0%, #15a7f5 100%);
+  background: url('../assets/img/services__bg.png');
   border-radius: 36px;
 }
 
@@ -3060,7 +3326,7 @@ textarea#requirements {
   border-radius: 36px;
   padding: 50px 9px;
   background-color: #1f1f1f;
-  color: #fff;  
+  color: #fff;
   font-size: 12px;
 }
 
@@ -3095,21 +3361,21 @@ textarea#requirements {
   margin-bottom: 32px;
 }
 .footer__actions {
-    display: flex;
-    flex-direction: column;    
-    gap: 30px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 .footer__email {
   display: none;
 }
 .footer__email--mob {
   display: block;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.1;
-    margin-bottom: 14px;
-    color: #fff;
-    text-decoration: none;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  color: #fff;
+  text-decoration: none;
 }
 .footer__phone,
 .footer__email {
@@ -3163,9 +3429,7 @@ textarea#requirements {
 
 /* --- Средняя часть --- */
 .footer__middle {
- 
   padding: 60px 0;
-  
 }
 .footer__nav {
   display: flex;
@@ -3246,33 +3510,32 @@ textarea#requirements {
 
 /* --- ДЕСКТОПНЫЕ СТИЛИ (АДАПТИВ >= 992px) --- */
 @media (min-width: 992px) {
- 
   .footer__inner {
-  border-radius: 36px;
-  padding: 66px 94px 66px 134px;
-  background-color: #1f1f1f;
-  color: #fff;  
-  font-size: 12px;
-}
+    border-radius: 36px;
+    padding: 66px 94px 66px 134px;
+    background-color: #1f1f1f;
+    color: #fff;
+    font-size: 12px;
+  }
   .footer__breadcrumbs a {
-  color: inherit;
-  text-decoration: none;
-  font-size: 16px;
-}
-.footer__breadcrumbs a:last-of-type {
-  color: #fff;
-}
-.footer__title {
-  max-width: 750px;  
-  font-size: 54px;
-  font-weight: 600;
-  line-height: 1.3;
-  margin-bottom: 24px;
-}
-.footer__phone {
-  font-size: 74px;
-  font-weight: 600;
-}
+    color: inherit;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .footer__breadcrumbs a:last-of-type {
+    color: #fff;
+  }
+  .footer__title {
+    max-width: 750px;
+    font-size: 54px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+  .footer__phone {
+    font-size: 74px;
+    font-weight: 600;
+  }
   .footer__top {
     display: flex;
     justify-content: space-between;
@@ -3281,27 +3544,26 @@ textarea#requirements {
   .footer__contacts {
     margin-bottom: 60px;
   }
-  .footer__middle { 
-  padding: 60px 0;
-  
-}
-.footer__socials {
-  order: 0;
-  margin-bottom: 10px;
-}
+  .footer__middle {
+    padding: 60px 0;
+  }
+  .footer__socials {
+    order: 0;
+    margin-bottom: 10px;
+  }
 
   .footer__main {
     max-width: 60%;
   }
   .footer__actions {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     gap: 24px;
   }
   .footer__email--mob {
     display: none;
   }
-  
+
   .footer__email {
     display: block;
     font-size: 42px;
@@ -3314,10 +3576,10 @@ textarea#requirements {
     gap: 16px;
     margin-bottom: 80px;
   }
-  .footer-btn {    
+  .footer-btn {
     padding: 0 24px;
   }
-  
+
   .footer__nav {
     flex-direction: row;
     gap: 80px;
@@ -3326,7 +3588,6 @@ textarea#requirements {
   .footer__legal {
     display: flex;
     flex-direction: column;
-   
   }
 }
 
@@ -3374,17 +3635,16 @@ textarea#requirements {
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
-  
 }
 .promo-banner__text span {
   display: inline-block;
- background: var(--background-gradient);
- transform: rotate(-2deg);
- border-radius: 6px;
+  background: var(--background-gradient);
+  transform: rotate(-2deg);
+  border-radius: 6px;
 }
 
 .promo-banner__btn {
-  flex-shrink: 0; 
+  flex-shrink: 0;
   padding: 22px 50px;
   border-radius: 100px;
   border: none;
@@ -3402,7 +3662,7 @@ textarea#requirements {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #2D2D2D;
+  background: #2d2d2d;
   border: #101010;
   color: #8a8a8a;
   font-size: 24px;
@@ -3415,7 +3675,6 @@ textarea#requirements {
 }
 /*/__ --- ДЕСКТОПНЫЕ СТИЛИ PROMO BANNER (АДАПТИВ >= 992px) --- /*/
 @media (min-width: 992px) {
-  
   .promo-banner__container {
     padding-right: 24px;
     /* max-width: 1200px; */
